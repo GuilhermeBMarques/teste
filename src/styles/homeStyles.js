@@ -151,13 +151,6 @@ const styles = StyleSheet.create({
   valueText: {
     color: "#747476",
   },
-  tipobotao: {
-    // width: 50,
-    // height: 50,
-    // alignItems: "center", 
-    // justifyContent: "center", 
-    // borderRadius: 50,
-  },
 });
 
 export default styles;

@@ -28,7 +28,8 @@ const App = () => {
   );
   const [selectedPokemon, setSelectedPokemon] = useState(null);
   const [activeButton, setActiveButton] = useState();
-  const [rangeValue, setRangeValue] = useState(50); // Valor inicial do slider
+  const [activeSortButton, setActiveSortButton] = useState(null);
+  const [rangeValue, setRangeValue] = useState(50);
 
   useEffect(() => {
     fetchPokemon();
@@ -43,7 +44,6 @@ const App = () => {
           id: index + 1,
         }));
 
-        // Filtra para garantir que não há duplicatas
         const uniquePokemons = newPokemons.filter(
           (newPokemon) =>
             !list.some((existing) => existing.id === newPokemon.id)
@@ -51,7 +51,7 @@ const App = () => {
 
         setList((prevList) => {
           const updatedList = [...prevList, ...uniquePokemons];
-          setDisplayedList(updatedList); // Atualiza a lista exibida
+          setDisplayedList(updatedList);
           return updatedList;
         });
         setNextUrl(response.data.next);
@@ -96,14 +96,6 @@ const App = () => {
   const filteredList = displayedList.filter((pokemon) =>
     pokemon.name.toLowerCase().includes(search.toLowerCase())
   );
-
-  const renderItem = ({ item }) => (
-    <PokemonHome item={item} onSelect={showPokemonProfile} />
-  );
-
-  const handleButtonPress = (button) => {
-    setActiveButton(activeButton === button ? null : button);
-  };
 
   const generationsI = () => {
     const filteredGenerationsI = list.filter(
@@ -159,6 +151,18 @@ const App = () => {
       (pokemon) => pokemon.id >= 810 && pokemon.id <= 816
     );
     setDisplayedList(filteredgenerationsVIII); // Atualiza a lista exibida
+  };
+
+  const renderItem = ({ item }) => (
+    <PokemonHome item={item} onSelect={showPokemonProfile} />
+  );
+
+  const handleButtonPress = (button) => {
+    setActiveButton(activeButton === button ? null : button);
+  };
+
+  const handleSortButtonPress = (button) => {
+    setActiveSortButton(activeSortButton === button ? null : button);
   };
 
   const sortByNumberAsc = () => {
@@ -220,15 +224,11 @@ const App = () => {
             </TouchableOpacity>
           </View>
 
-          {/* Titulo da Pagina */}
           <Text style={styles.titulo}>Pokédex</Text>
-
-          {/* Subtitulo da Pagina */}
           <Text style={styles.subtitulo}>
             Search for Pokémon by name or using the National Pokédex number.
           </Text>
 
-          {/* Campo de pesquisa */}
           <View style={styles.pesquisar}>
             <Image
               source={ImagensIcon.icons.pesquisa}
@@ -435,29 +435,91 @@ const App = () => {
                 </Text>
                 <View style={styles.kkj}>
                   <TouchableOpacity
-                    style={styles.btnSort}
-                    onPress={sortByNumberAsc}
+                    style={[
+                      styles.btnSort,
+                      activeSortButton === "asc" && {
+                        backgroundColor: "#EA5D60",
+                      },
+                    ]}
+                    onPress={() => {
+                      sortByNumberAsc();
+                      handleSortButtonPress("asc");
+                    }}
                   >
-                    <Text style={styles.btnText}>Smallest number first</Text>
+                    <Text
+                      style={[
+                        styles.btnText,
+                        activeSortButton === "asc" && { color: "#fff" },
+                      ]}
+                    >
+                      Smallest number first
+                    </Text>
                   </TouchableOpacity>
 
                   <TouchableOpacity
-                    style={styles.btnSort}
-                    onPress={sortByNumberDesc}
+                    style={[
+                      styles.btnSort,
+                      activeSortButton === "desc" && {
+                        backgroundColor: "#EA5D60",
+                      },
+                    ]}
+                    onPress={() => {
+                      sortByNumberDesc();
+                      handleSortButtonPress("desc");
+                    }}
                   >
-                    <Text style={styles.btnText}>Highest number first</Text>
+                    <Text
+                      style={[
+                        styles.btnText,
+                        activeSortButton === "desc" && { color: "#fff" },
+                      ]}
+                    >
+                      Highest number first
+                    </Text>
                   </TouchableOpacity>
+
                   <TouchableOpacity
-                    style={styles.btnSort}
-                    onPress={sortByNameAsc}
+                    style={[
+                      styles.btnSort,
+                      activeSortButton === "nameAsc" && {
+                        backgroundColor: "#EA5D60",
+                      },
+                    ]}
+                    onPress={() => {
+                      sortByNameAsc();
+                      handleSortButtonPress("nameAsc");
+                    }}
                   >
-                    <Text style={styles.btnText}>A-Z</Text>
+                    <Text
+                      style={[
+                        styles.btnText,
+                        activeSortButton === "nameAsc" && { color: "#fff" },
+                      ]}
+                    >
+                      A-Z
+                    </Text>
                   </TouchableOpacity>
+
                   <TouchableOpacity
-                    style={styles.btnSort}
-                    onPress={sortByNameDesc}
+                    style={[
+                      styles.btnSort,
+                      activeSortButton === "nameDesc" && {
+                        backgroundColor: "#EA5D60",
+                      },
+                    ]}
+                    onPress={() => {
+                      sortByNameDesc();
+                      handleSortButtonPress("nameDesc");
+                    }}
                   >
-                    <Text style={styles.btnText}>Z-A</Text>
+                    <Text
+                      style={[
+                        styles.btnText,
+                        activeSortButton === "nameDesc" && { color: "#fff" },
+                      ]}
+                    >
+                      Z-A
+                    </Text>
                   </TouchableOpacity>
                 </View>
               </View>
@@ -1063,6 +1125,8 @@ const App = () => {
               </View>
             </View>
           )}
+
+
 
           <FlatList
             data={filteredList}
