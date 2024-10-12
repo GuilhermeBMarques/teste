@@ -254,8 +254,16 @@ const App = () => {
 
                   <View style={styles.paitaon}>
                     <TouchableOpacity
-                      style={styles.containerGenerations}
-                      onPress={generationsI}
+                      style={[
+                        styles.containerGenerations,
+                        activeSortButton === "geno" && {
+                          backgroundColor: "#EA5D60",
+                        },
+                      ]}
+                      onPress={() => {
+                        generationsI(); // Corrigido para chamar a função
+                        handleSortButtonPress("geno");
+                      }}
                     >
                       <View style={styles.slaman}>
                         <Image
@@ -271,12 +279,27 @@ const App = () => {
                           style={styles.imgGenerations}
                         />
                       </View>
-                      <Text style={styles.filtroText2}>Generation I</Text>
+                      <Text
+                        style={[
+                          styles.filtroText2,
+                          activeSortButton === "geno" && { color: "#fff" },
+                        ]}
+                      >
+                        Generation I
+                      </Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={styles.containerGenerations}
-                      onPress={generationsII}
+                      style={[
+                        styles.containerGenerations,
+                        activeSortButton === "genoII" && {
+                          backgroundColor: "#EA5D60",
+                        },
+                      ]}
+                      onPress={() => {
+                        generationsII(); // Corrigido para chamar a função
+                        handleSortButtonPress("genoII");
+                      }}
                     >
                       <View style={styles.slaman}>
                         <Image
@@ -292,12 +315,27 @@ const App = () => {
                           style={styles.imgGenerations}
                         />
                       </View>
-                      <Text style={styles.filtroText2}>Generation II</Text>
+                      <Text
+                        style={[
+                          styles.filtroText2,
+                          activeSortButton === "genoII" && { color: "#fff" },
+                        ]}
+                      >
+                        Generation II
+                      </Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={styles.containerGenerations}
-                      onPress={generationsIII}
+                      style={[
+                        styles.containerGenerations,
+                        activeSortButton === "genoIII" && {
+                          backgroundColor: "#EA5D60",
+                        },
+                      ]}
+                      onPress={() => {
+                        generationsIII(); // Corrigido para chamar a função
+                        handleSortButtonPress("genoIII");
+                      }}
                     >
                       <View style={styles.slaman}>
                         <Image
@@ -313,12 +351,27 @@ const App = () => {
                           style={styles.imgGenerations}
                         />
                       </View>
-                      <Text style={styles.filtroText2}>Generation III</Text>
+                      <Text
+                        style={[
+                          styles.filtroText2,
+                          activeSortButton === "genoIII" && { color: "#fff" },
+                        ]}
+                      >
+                        Generation III
+                      </Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={styles.containerGenerations}
-                      onPress={generationsIV}
+                      style={[
+                        styles.containerGenerations,
+                        activeSortButton === "genoIV" && {
+                          backgroundColor: "#EA5D60",
+                        },
+                      ]}
+                      onPress={() => {
+                        generationsIV(); // Corrigido para chamar a função
+                        handleSortButtonPress("genoIV");
+                      }}
                     >
                       <View style={styles.slaman}>
                         <Image
@@ -334,12 +387,27 @@ const App = () => {
                           style={styles.imgGenerations}
                         />
                       </View>
-                      <Text style={styles.filtroText2}>Generation IV</Text>
+                      <Text
+                        style={[
+                          styles.filtroText2,
+                          activeSortButton === "genoIV" && { color: "#fff" },
+                        ]}
+                      >
+                        Generation IV
+                      </Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={styles.containerGenerations}
-                      onPress={generationsV}
+                      style={[
+                        styles.containerGenerations,
+                        activeSortButton === "genoV" && {
+                          backgroundColor: "#EA5D60",
+                        },
+                      ]}
+                      onPress={() => {
+                        generationsV(); // Corrigido para chamar a função
+                        handleSortButtonPress("genoV");
+                      }}
                     >
                       <View style={styles.slaman}>
                         <Image
@@ -355,12 +423,27 @@ const App = () => {
                           style={styles.imgGenerations}
                         />
                       </View>
-                      <Text style={styles.filtroText2}>Generation I</Text>
+                      <Text
+                        style={[
+                          styles.filtroText2,
+                          activeSortButton === "genoV" && { color: "#fff" },
+                        ]}
+                      >
+                        Generation V
+                      </Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={styles.containerGenerations}
-                      onPress={generationsVI}
+                      style={[
+                        styles.containerGenerations,
+                        activeSortButton === "genoVI" && {
+                          backgroundColor: "#EA5D60",
+                        },
+                      ]}
+                      onPress={() => {
+                        generationsVI(); // Corrigido para chamar a função
+                        handleSortButtonPress("genoVI");
+                      }}
                     >
                       <View style={styles.slaman}>
                         <Image
@@ -376,12 +459,27 @@ const App = () => {
                           style={styles.imgGenerations}
                         />
                       </View>
-                      <Text style={styles.filtroText2}>Generation I</Text>
+                      <Text
+                        style={[
+                          styles.filtroText2,
+                          activeSortButton === "genoVI" && { color: "#fff" },
+                        ]}
+                      >
+                        Generation VI
+                      </Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={styles.containerGenerations}
-                      onPress={generationsVII}
+                      style={[
+                        styles.containerGenerations,
+                        activeSortButton === "genoVII" && {
+                          backgroundColor: "#EA5D60",
+                        },
+                      ]}
+                      onPress={() => {
+                        generationsVII(); // Corrigido para chamar a função
+                        handleSortButtonPress("genoVII");
+                      }}
                     >
                       <View style={styles.slaman}>
                         <Image
@@ -397,12 +495,27 @@ const App = () => {
                           style={styles.imgGenerations}
                         />
                       </View>
-                      <Text style={styles.filtroText2}>Generation I</Text>
+                      <Text
+                        style={[
+                          styles.filtroText2,
+                          activeSortButton === "genoVII" && { color: "#fff" },
+                        ]}
+                      >
+                        Generation VII
+                      </Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={styles.containerGenerations}
-                      onPress={generationsVIII}
+                      style={[
+                        styles.containerGenerations,
+                        activeSortButton === "genoVIII" && {
+                          backgroundColor: "#EA5D60",
+                        },
+                      ]}
+                      onPress={() => {
+                        generationsVIII(); // Corrigido para chamar a função
+                        handleSortButtonPress("genoVIII");
+                      }}
                     >
                       <View style={styles.slaman}>
                         <Image
@@ -418,14 +531,21 @@ const App = () => {
                           style={styles.imgGenerations}
                         />
                       </View>
-                      <Text style={styles.filtroText2}>Generation I</Text>
+                      <Text
+                        style={[
+                          styles.filtroText2,
+                          activeSortButton === "genoVIII" && { color: "#fff" },
+                        ]}
+                      >
+                        Generation VIII
+                      </Text>
                     </TouchableOpacity>
                   </View>
                 </ScrollView>
               </View>
             </View>
           )}
-
+  
           {activeButton === "sortFiltro" && (
             <View style={styles.borrao}>
               <View style={styles.containerFiltro}>
@@ -526,7 +646,7 @@ const App = () => {
             </View>
           )}
 
-{activeButton === "filtroFiltro" && (
+          {activeButton === "filtroFiltro" && (
             <View style={styles.borrao}>
               <View style={styles.containerFiltro}>
                 <Text style={styles.filtroText1}>Filters</Text>
@@ -1125,8 +1245,6 @@ const App = () => {
               </View>
             </View>
           )}
-
-
 
           <FlatList
             data={filteredList}
