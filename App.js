@@ -11,6 +11,7 @@ import {
   SafeAreaView,
   ScrollView,
   Modal,
+  Button,
 } from "react-native";
 import axios from "axios";
 import PokemonHome from "./src/components/PokemonHome";
@@ -93,8 +94,39 @@ const App = () => {
     setSelectedPokemon(null);
   };
 
+  const [modalGenerationsOpen, setModalGenerationsOpen] = useState(false);
+  const [modalSortOpen, setModalSortOpen] = useState(false);
+  const [modalFilterOpen, setModalFilterOpen] = useState(false);
+
+  const openGenerationsModal = () => {
+    setModalGenerationsOpen(true);
+    setModalSortOpen(false); // Fecha o outro modal
+  };
+
+  const openSortModal = () => {
+    setModalSortOpen(true);
+    setModalGenerationsOpen(false); // Fecha o outro modal
+  };
+
+  const openFilterModal = () => {
+    setModalFilterOpen(true);
+    setModalGenerationsOpen(false); // Fecha o outro modal
+  };
+
+  const closeGenerations = () => {
+    setModalGenerationsOpen(false);
+  };
+
+  const closeSort = () => {
+    setModalSortOpen(false);
+  };
+
+  const closeFilter = () => {
+    setModalFilterOpen(false);
+  };
+
   const filteredList = displayedList.filter((pokemon) =>
-    pokemon.name.toLowerCase().includes(search.toLowerCase())
+    pokemon.name.toLowerCase().includes(search.toLowerCase()),
   );
 
   const generationsI = () => {
@@ -157,10 +189,6 @@ const App = () => {
     <PokemonHome item={item} onSelect={showPokemonProfile} />
   );
 
-  const handleButtonPress = (button) => {
-    setActiveButton(activeButton === button ? null : button);
-  };
-
   const handleSortButtonPress = (button) => {
     setActiveSortButton(activeSortButton === button ? null : button);
   };
@@ -211,15 +239,13 @@ const App = () => {
 
           {/* Icons */}
           <View style={styles.icons}>
-            <TouchableOpacity
-              onPress={() => handleButtonPress("geracaoFiltro")}
-            >
+            <TouchableOpacity onPress={openGenerationsModal}>
               <Image source={ImagensIcon.icons.geracao} style={styles.icon} />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => handleButtonPress("sortFiltro")}>
+            <TouchableOpacity onPress={openSortModal}>
               <Image source={ImagensIcon.icons.organizar} style={styles.icon} />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => handleButtonPress("filtroFiltro")}>
+            <TouchableOpacity onPress={openFilterModal}>
               <Image source={ImagensIcon.icons.filtro} style={styles.icon} />
             </TouchableOpacity>
           </View>
@@ -243,8 +269,17 @@ const App = () => {
             />
           </View>
 
-          {activeButton === "geracaoFiltro" && (
+          {/* Modal Generetions */}
+          <Modal
+            visible={modalGenerationsOpen}
+            animationType="slide"
+            transparent={true}
+          >
             <View style={styles.borrao}>
+              <TouchableOpacity
+                style={styles.closebtn}
+                onPress={closeGenerations}
+              ></TouchableOpacity>
               <View style={styles.containerFiltro}>
                 <ScrollView>
                   <Text style={styles.filtroText1}>Generations</Text>
@@ -544,10 +579,19 @@ const App = () => {
                 </ScrollView>
               </View>
             </View>
-          )}
-  
-          {activeButton === "sortFiltro" && (
+          </Modal>
+
+          {/* Modal Sort*/}
+          <Modal
+            visible={modalSortOpen}
+            animationType="slide"
+            transparent={true}
+          >
             <View style={styles.borrao}>
+              <TouchableOpacity
+                style={styles.closebtn}
+                onPress={closeSort}
+              ></TouchableOpacity>
               <View style={styles.containerFiltro}>
                 <Text style={styles.filtroText1}>Sort</Text>
                 <Text style={styles.filtroText2}>
@@ -644,10 +688,19 @@ const App = () => {
                 </View>
               </View>
             </View>
-          )}
+          </Modal>
 
-          {activeButton === "filtroFiltro" && (
+          {/* Modal Filter */}
+          <Modal
+            visible={modalFilterOpen}
+            animationType="slide"
+            transparent={true}
+          >
             <View style={styles.borrao}>
+              <TouchableOpacity
+                style={styles.closebtn}
+                onPress={closeFilter}
+              ></TouchableOpacity>
               <View style={styles.containerFiltro}>
                 <Text style={styles.filtroText1}>Filters</Text>
                 <Text style={styles.filtroText2}>
@@ -657,7 +710,6 @@ const App = () => {
                 <View style={styles.fds}>
                   <Text style={styles.filtroText1}>Types</Text>
                   <View style={styles.nem}>
-
                     <TouchableOpacity
                       style={[
                         styles.tipobotao,
@@ -666,7 +718,7 @@ const App = () => {
                         },
                       ]}
                       onPress={() => {
-                        TypesPokemons()
+                        TypesPokemons();
                         handleSortButtonPress("filter");
                       }}
                     >
@@ -675,12 +727,9 @@ const App = () => {
                         style={styles.imgFoda}
                       />
                     </TouchableOpacity>
- 
+
                     <TouchableOpacity
-                      style={
-                        styles.tipobotao
-                       
-                      }
+                      style={styles.tipobotao}
                       onPress={TypesPokemons}
                     >
                       <Image
@@ -690,10 +739,7 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={
-                        styles.tipobotao
-                       
-                      }
+                      style={styles.tipobotao}
                       onPress={TypesPokemons}
                     >
                       <Image
@@ -703,10 +749,7 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={
-                        styles.tipobotao
-                       
-                      }
+                      style={styles.tipobotao}
                       onPress={TypesPokemons}
                     >
                       <Image
@@ -716,10 +759,7 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={
-                        styles.tipobotao
-                       
-                      }
+                      style={styles.tipobotao}
                       onPress={TypesPokemons}
                     >
                       <Image
@@ -729,10 +769,7 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={
-                        styles.tipobotao
-                       
-                      }
+                      style={styles.tipobotao}
                       onPress={TypesPokemons}
                     >
                       <Image
@@ -742,10 +779,7 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={
-                        styles.tipobotao
-                       
-                      }
+                      style={styles.tipobotao}
                       onPress={TypesPokemons}
                     >
                       <Image
@@ -755,10 +789,7 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={
-                        styles.tipobotao
-                       
-                      }
+                      style={styles.tipobotao}
                       onPress={TypesPokemons}
                     >
                       <Image
@@ -768,10 +799,7 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={
-                        styles.tipobotao
-                       
-                      }
+                      style={styles.tipobotao}
                       onPress={TypesPokemons}
                     >
                       <Image
@@ -781,10 +809,7 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={
-                        styles.tipobotao
-                       
-                      }
+                      style={styles.tipobotao}
                       onPress={TypesPokemons}
                     >
                       <Image
@@ -794,9 +819,7 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={
-                        styles.tipobotao
-                      }
+                      style={styles.tipobotao}
                       onPress={TypesPokemons}
                     >
                       <Image
@@ -806,9 +829,7 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={
-                        styles.tipobotao
-                      }
+                      style={styles.tipobotao}
                       onPress={TypesPokemons}
                     >
                       <Image
@@ -818,9 +839,7 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={
-                        styles.tipobotao
-                      }
+                      style={styles.tipobotao}
                       onPress={TypesPokemons}
                     >
                       <Image
@@ -830,9 +849,7 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={
-                        styles.tipobotao
-                      }
+                      style={styles.tipobotao}
                       onPress={TypesPokemons}
                     >
                       <Image
@@ -842,9 +859,7 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={
-                        styles.tipobotao
-                      }
+                      style={styles.tipobotao}
                       onPress={TypesPokemons}
                     >
                       <Image
@@ -854,9 +869,7 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={
-                        styles.tipobotao
-                      }
+                      style={styles.tipobotao}
                       onPress={TypesPokemons}
                     >
                       <Image
@@ -866,9 +879,7 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={
-                        styles.tipobotao
-                      }
+                      style={styles.tipobotao}
                       onPress={TypesPokemons}
                     >
                       <Image
@@ -878,9 +889,7 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={
-                        styles.tipobotao
-                      }
+                      style={styles.tipobotao}
                       onPress={TypesPokemons}
                     >
                       <Image
@@ -893,10 +902,7 @@ const App = () => {
                   <Text style={styles.filtroText1}>Weaknesses</Text>
                   <View style={styles.nem}>
                     <TouchableOpacity
-                      style={
-                        styles.tipobotao
-                       
-                      }
+                      style={styles.tipobotao}
                       onPress={botoesTipos}
                     >
                       <Image
@@ -906,10 +912,7 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={
-                        styles.tipobotao
-                       
-                      }
+                      style={styles.tipobotao}
                       onPress={botoesTipos}
                     >
                       <Image
@@ -919,10 +922,7 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={
-                        styles.tipobotao
-                       
-                      }
+                      style={styles.tipobotao}
                       onPress={botoesTipos}
                     >
                       <Image
@@ -932,10 +932,7 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={
-                        styles.tipobotao
-                       
-                      }
+                      style={styles.tipobotao}
                       onPress={botoesTipos}
                     >
                       <Image
@@ -945,10 +942,7 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={
-                        styles.tipobotao
-                       
-                      }
+                      style={styles.tipobotao}
                       onPress={botoesTipos}
                     >
                       <Image
@@ -958,10 +952,7 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={
-                        styles.tipobotao
-                       
-                      }
+                      style={styles.tipobotao}
                       onPress={botoesTipos}
                     >
                       <Image
@@ -971,10 +962,7 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={
-                        styles.tipobotao
-                       
-                      }
+                      style={styles.tipobotao}
                       onPress={botoesTipos}
                     >
                       <Image
@@ -984,10 +972,7 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={
-                        styles.tipobotao
-                       
-                      }
+                      style={styles.tipobotao}
                       onPress={botoesTipos}
                     >
                       <Image
@@ -997,10 +982,7 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={
-                        styles.tipobotao
-                       
-                      }
+                      style={styles.tipobotao}
                       onPress={botoesTipos}
                     >
                       <Image
@@ -1010,9 +992,7 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={
-                        styles.tipobotao
-                      }
+                      style={styles.tipobotao}
                       onPress={botoesTipos}
                     >
                       <Image
@@ -1022,9 +1002,7 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={
-                        styles.tipobotao
-                      }
+                      style={styles.tipobotao}
                       onPress={botoesTipos}
                     >
                       <Image
@@ -1034,9 +1012,7 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={
-                        styles.tipobotao
-                      }
+                      style={styles.tipobotao}
                       onPress={botoesTipos}
                     >
                       <Image
@@ -1046,9 +1022,7 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={
-                        styles.tipobotao
-                      }
+                      style={styles.tipobotao}
                       onPress={botoesTipos}
                     >
                       <Image
@@ -1058,9 +1032,7 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={
-                        styles.tipobotao
-                      }
+                      style={styles.tipobotao}
                       onPress={botoesTipos}
                     >
                       <Image
@@ -1070,9 +1042,7 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={
-                        styles.tipobotao
-                      }
+                      style={styles.tipobotao}
                       onPress={botoesTipos}
                     >
                       <Image
@@ -1082,9 +1052,7 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={
-                        styles.tipobotao
-                      }
+                      style={styles.tipobotao}
                       onPress={botoesTipos}
                     >
                       <Image
@@ -1094,9 +1062,7 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={
-                        styles.tipobotao
-                      }
+                      style={styles.tipobotao}
                       onPress={botoesTipos}
                     >
                       <Image
@@ -1106,9 +1072,7 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={
-                        styles.tipobotao
-                      }
+                      style={styles.tipobotao}
                       onPress={botoesTipos}
                     >
                       <Image
@@ -1121,9 +1085,7 @@ const App = () => {
                   <Text style={styles.filtroText1}>Heights</Text>
                   <View style={styles.nem}>
                     <TouchableOpacity
-                      style={
-                        styles.tipobotao
-                      }
+                      style={styles.tipobotao}
                       onPress={botoesTipos}
                     >
                       <Image
@@ -1133,9 +1095,7 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={
-                        styles.tipobotao
-                      }
+                      style={styles.tipobotao}
                       onPress={botoesTipos}
                     >
                       <Image
@@ -1145,9 +1105,7 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={
-                        styles.tipobotao
-                      }
+                      style={styles.tipobotao}
                       onPress={botoesTipos}
                     >
                       <Image
@@ -1160,9 +1118,7 @@ const App = () => {
                   <Text style={styles.filtroText1}>Weights</Text>
                   <View style={styles.nem}>
                     <TouchableOpacity
-                      style={
-                        styles.tipobotao
-                      }
+                      style={styles.tipobotao}
                       onPress={botoesTipos}
                     >
                       <Image
@@ -1172,9 +1128,7 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={
-                        styles.tipobotao
-                      }
+                      style={styles.tipobotao}
                       onPress={botoesTipos}
                     >
                       <Image
@@ -1184,9 +1138,7 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={
-                        styles.tipobotao
-                      }
+                      style={styles.tipobotao}
                       onPress={botoesTipos}
                     >
                       <Image
@@ -1217,17 +1169,47 @@ const App = () => {
                     <Text style={styles.valueText}>{rangeValue}</Text>
                   </View>
                   <View style={styles.ResetApply}>
-                    <TouchableOpacity style={styles.btnFilters} onPress={Reset}>
-                      <Text style={styles.textSs}>Reset</Text>
+                    <TouchableOpacity style={[
+                      styles.btnFilters,
+                      activeSortButton === "reseti"&& {
+                        backgroundColor: "#EA5D60",
+                        },
+                      ]} 
+                      onPress={() => {
+                        Reset()
+                        handleSortButtonPress("reseti");
+                      }
+
+                      }>
+                      <Text style={[styles.textSs,
+                     activeSortButton === "reseti"&& {
+                      color: "white",
+                      },
+                    ]} >Reset</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.btnFilters} onPress={Apply}>
-                      <Text style={styles.textSs}>Apply</Text>
+
+              
+                    <TouchableOpacity style={[
+                      styles.btnFilters,
+                      activeSortButton === "apli"&& {
+                        backgroundColor: "#EA5D60",
+                        },
+                      ]} 
+                      onPress={() => {
+                        Apply()
+                        handleSortButtonPress("apli");
+                      }}>
+                    <Text style={[styles.textSs,
+                     activeSortButton === "apli"&& {
+                      color: "white",
+                      },
+                    ]} >Apply</Text>
                     </TouchableOpacity>
                   </View>
                 </View>
               </View>
             </View>
-          )}
+          </Modal>
 
           <FlatList
             data={filteredList}

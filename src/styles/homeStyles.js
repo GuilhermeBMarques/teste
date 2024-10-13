@@ -65,17 +65,20 @@ const styles = StyleSheet.create({
   borrao: {
     width: "100%",
     height: "100%",
-    backgroundColor: "#3233",
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
     position: "absolute",
     zIndex: 1,
     justifyContent: "center",
   },
+  closebtn: {
+    width: "100%",
+    height: "95%",
+  },
   containerFiltro: {
-    top: 425,
     padding: 20,
     width: "100%",
     height: "100%",
-    borderRadius: 10,
+    borderRadius: 40,
     backgroundColor: "#FFFFFF",
   },
   paitaon: {
