@@ -10,6 +10,7 @@ import {
   StatusBar,
   SafeAreaView,
   ScrollView,
+  Modal,
 } from "react-native";
 import axios from "axios";
 import PokemonHome from "./src/components/PokemonHome";
@@ -17,7 +18,6 @@ import Profile from "./src/pages/Profile.jsx";
 import ImagensIcon from "./src/utils/Imagens.js";
 import styles from "./src/styles/homeStyles.js";
 import Slider from "@react-native-community/slider";
-import { FiltroCor } from "./src/utils/FiltroCor.js";
 
 const App = () => {
   const [list, setList] = useState([]);
@@ -657,24 +657,30 @@ const App = () => {
                 <View style={styles.fds}>
                   <Text style={styles.filtroText1}>Types</Text>
                   <View style={styles.nem}>
+
                     <TouchableOpacity
                       style={[
                         styles.tipobotao,
-                        { backgroundColor: FiltroCor("filtro1") },
+                        activeSortButton === "filter" && {
+                          backgroundColor: "#8CB230",
+                        },
                       ]}
-                      onPress={TypesPokemons}
+                      onPress={() => {
+                        TypesPokemons()
+                        handleSortButtonPress("filter");
+                      }}
                     >
                       <Image
                         source={ImagensIcon.filtros.filtro1}
                         style={styles.imgFoda}
                       />
                     </TouchableOpacity>
-
+ 
                     <TouchableOpacity
-                      style={[
-                        styles.tipobotao,
-                        { backgroundColor: FiltroCor("filtro2") },
-                      ]}
+                      style={
+                        styles.tipobotao
+                       
+                      }
                       onPress={TypesPokemons}
                     >
                       <Image
@@ -684,10 +690,10 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={[
-                        styles.tipobotao,
-                        { backgroundColor: FiltroCor("filtro3") },
-                      ]}
+                      style={
+                        styles.tipobotao
+                       
+                      }
                       onPress={TypesPokemons}
                     >
                       <Image
@@ -697,10 +703,10 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={[
-                        styles.tipobotao,
-                        { backgroundColor: FiltroCor("filtro4") },
-                      ]}
+                      style={
+                        styles.tipobotao
+                       
+                      }
                       onPress={TypesPokemons}
                     >
                       <Image
@@ -710,10 +716,10 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={[
-                        styles.tipobotao,
-                        { backgroundColor: FiltroCor("filtro5") },
-                      ]}
+                      style={
+                        styles.tipobotao
+                       
+                      }
                       onPress={TypesPokemons}
                     >
                       <Image
@@ -723,10 +729,10 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={[
-                        styles.tipobotao,
-                        { backgroundColor: FiltroCor("filtro6") },
-                      ]}
+                      style={
+                        styles.tipobotao
+                       
+                      }
                       onPress={TypesPokemons}
                     >
                       <Image
@@ -736,10 +742,10 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={[
-                        styles.tipobotao,
-                        { backgroundColor: FiltroCor("filtro7") },
-                      ]}
+                      style={
+                        styles.tipobotao
+                       
+                      }
                       onPress={TypesPokemons}
                     >
                       <Image
@@ -749,10 +755,10 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={[
-                        styles.tipobotao,
-                        { backgroundColor: FiltroCor("filtro8") },
-                      ]}
+                      style={
+                        styles.tipobotao
+                       
+                      }
                       onPress={TypesPokemons}
                     >
                       <Image
@@ -762,10 +768,10 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={[
-                        styles.tipobotao,
-                        { backgroundColor: FiltroCor("filtro9") },
-                      ]}
+                      style={
+                        styles.tipobotao
+                       
+                      }
                       onPress={TypesPokemons}
                     >
                       <Image
@@ -775,10 +781,10 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={[
-                        styles.tipobotao,
-                        { backgroundColor: FiltroCor("filtro10") },
-                      ]}
+                      style={
+                        styles.tipobotao
+                       
+                      }
                       onPress={TypesPokemons}
                     >
                       <Image
@@ -788,10 +794,9 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={[
-                        styles.tipobotao,
-                        { backgroundColor: FiltroCor("filtro11") },
-                      ]}
+                      style={
+                        styles.tipobotao
+                      }
                       onPress={TypesPokemons}
                     >
                       <Image
@@ -801,10 +806,9 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={[
-                        styles.tipobotao,
-                        { backgroundColor: FiltroCor("filtro12") },
-                      ]}
+                      style={
+                        styles.tipobotao
+                      }
                       onPress={TypesPokemons}
                     >
                       <Image
@@ -814,10 +818,9 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={[
-                        styles.tipobotao,
-                        { backgroundColor: FiltroCor("filtro13") },
-                      ]}
+                      style={
+                        styles.tipobotao
+                      }
                       onPress={TypesPokemons}
                     >
                       <Image
@@ -827,10 +830,9 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={[
-                        styles.tipobotao,
-                        { backgroundColor: FiltroCor("filtro14") },
-                      ]}
+                      style={
+                        styles.tipobotao
+                      }
                       onPress={TypesPokemons}
                     >
                       <Image
@@ -840,10 +842,9 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={[
-                        styles.tipobotao,
-                        { backgroundColor: FiltroCor("filtro15") },
-                      ]}
+                      style={
+                        styles.tipobotao
+                      }
                       onPress={TypesPokemons}
                     >
                       <Image
@@ -853,10 +854,9 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={[
-                        styles.tipobotao,
-                        { backgroundColor: FiltroCor("filtro16") },
-                      ]}
+                      style={
+                        styles.tipobotao
+                      }
                       onPress={TypesPokemons}
                     >
                       <Image
@@ -866,10 +866,9 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={[
-                        styles.tipobotao,
-                        { backgroundColor: FiltroCor("filtro17") },
-                      ]}
+                      style={
+                        styles.tipobotao
+                      }
                       onPress={TypesPokemons}
                     >
                       <Image
@@ -879,10 +878,9 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={[
-                        styles.tipobotao,
-                        { backgroundColor: FiltroCor("filtro18") },
-                      ]}
+                      style={
+                        styles.tipobotao
+                      }
                       onPress={TypesPokemons}
                     >
                       <Image
@@ -895,10 +893,10 @@ const App = () => {
                   <Text style={styles.filtroText1}>Weaknesses</Text>
                   <View style={styles.nem}>
                     <TouchableOpacity
-                      style={[
-                        styles.tipobotao,
-                        { backgroundColor: FiltroCor("filtro1") },
-                      ]}
+                      style={
+                        styles.tipobotao
+                       
+                      }
                       onPress={botoesTipos}
                     >
                       <Image
@@ -908,10 +906,10 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={[
-                        styles.tipobotao,
-                        { backgroundColor: FiltroCor("filtro2") },
-                      ]}
+                      style={
+                        styles.tipobotao
+                       
+                      }
                       onPress={botoesTipos}
                     >
                       <Image
@@ -921,10 +919,10 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={[
-                        styles.tipobotao,
-                        { backgroundColor: FiltroCor("filtro3") },
-                      ]}
+                      style={
+                        styles.tipobotao
+                       
+                      }
                       onPress={botoesTipos}
                     >
                       <Image
@@ -934,10 +932,10 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={[
-                        styles.tipobotao,
-                        { backgroundColor: FiltroCor("filtro4") },
-                      ]}
+                      style={
+                        styles.tipobotao
+                       
+                      }
                       onPress={botoesTipos}
                     >
                       <Image
@@ -947,10 +945,10 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={[
-                        styles.tipobotao,
-                        { backgroundColor: FiltroCor("filtro5") },
-                      ]}
+                      style={
+                        styles.tipobotao
+                       
+                      }
                       onPress={botoesTipos}
                     >
                       <Image
@@ -960,10 +958,10 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={[
-                        styles.tipobotao,
-                        { backgroundColor: FiltroCor("filtro6") },
-                      ]}
+                      style={
+                        styles.tipobotao
+                       
+                      }
                       onPress={botoesTipos}
                     >
                       <Image
@@ -973,10 +971,10 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={[
-                        styles.tipobotao,
-                        { backgroundColor: FiltroCor("filtro7") },
-                      ]}
+                      style={
+                        styles.tipobotao
+                       
+                      }
                       onPress={botoesTipos}
                     >
                       <Image
@@ -986,10 +984,10 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={[
-                        styles.tipobotao,
-                        { backgroundColor: FiltroCor("filtro8") },
-                      ]}
+                      style={
+                        styles.tipobotao
+                       
+                      }
                       onPress={botoesTipos}
                     >
                       <Image
@@ -999,10 +997,10 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={[
-                        styles.tipobotao,
-                        { backgroundColor: FiltroCor("filtro9") },
-                      ]}
+                      style={
+                        styles.tipobotao
+                       
+                      }
                       onPress={botoesTipos}
                     >
                       <Image
@@ -1012,10 +1010,9 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={[
-                        styles.tipobotao,
-                        { backgroundColor: FiltroCor("filtro10") },
-                      ]}
+                      style={
+                        styles.tipobotao
+                      }
                       onPress={botoesTipos}
                     >
                       <Image
@@ -1025,10 +1022,9 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={[
-                        styles.tipobotao,
-                        { backgroundColor: FiltroCor("filtro11") },
-                      ]}
+                      style={
+                        styles.tipobotao
+                      }
                       onPress={botoesTipos}
                     >
                       <Image
@@ -1038,10 +1034,9 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={[
-                        styles.tipobotao,
-                        { backgroundColor: FiltroCor("filtro12") },
-                      ]}
+                      style={
+                        styles.tipobotao
+                      }
                       onPress={botoesTipos}
                     >
                       <Image
@@ -1051,10 +1046,9 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={[
-                        styles.tipobotao,
-                        { backgroundColor: FiltroCor("filtro13") },
-                      ]}
+                      style={
+                        styles.tipobotao
+                      }
                       onPress={botoesTipos}
                     >
                       <Image
@@ -1064,10 +1058,9 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={[
-                        styles.tipobotao,
-                        { backgroundColor: FiltroCor("filtro14") },
-                      ]}
+                      style={
+                        styles.tipobotao
+                      }
                       onPress={botoesTipos}
                     >
                       <Image
@@ -1077,10 +1070,9 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={[
-                        styles.tipobotao,
-                        { backgroundColor: FiltroCor("filtro15") },
-                      ]}
+                      style={
+                        styles.tipobotao
+                      }
                       onPress={botoesTipos}
                     >
                       <Image
@@ -1090,10 +1082,9 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={[
-                        styles.tipobotao,
-                        { backgroundColor: FiltroCor("filtro16") },
-                      ]}
+                      style={
+                        styles.tipobotao
+                      }
                       onPress={botoesTipos}
                     >
                       <Image
@@ -1103,10 +1094,9 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={[
-                        styles.tipobotao,
-                        { backgroundColor: FiltroCor("filtro17") },
-                      ]}
+                      style={
+                        styles.tipobotao
+                      }
                       onPress={botoesTipos}
                     >
                       <Image
@@ -1116,10 +1106,9 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={[
-                        styles.tipobotao,
-                        { backgroundColor: FiltroCor("filtro18") },
-                      ]}
+                      style={
+                        styles.tipobotao
+                      }
                       onPress={botoesTipos}
                     >
                       <Image
@@ -1132,10 +1121,9 @@ const App = () => {
                   <Text style={styles.filtroText1}>Heights</Text>
                   <View style={styles.nem}>
                     <TouchableOpacity
-                      style={[
-                        styles.tipobotao,
-                        { backgroundColor: FiltroCor("filtro19") },
-                      ]}
+                      style={
+                        styles.tipobotao
+                      }
                       onPress={botoesTipos}
                     >
                       <Image
@@ -1145,10 +1133,9 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={[
-                        styles.tipobotao,
-                        { backgroundColor: FiltroCor("filtro20") },
-                      ]}
+                      style={
+                        styles.tipobotao
+                      }
                       onPress={botoesTipos}
                     >
                       <Image
@@ -1158,10 +1145,9 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={[
-                        styles.tipobotao,
-                        { backgroundColor: FiltroCor("filtro21") },
-                      ]}
+                      style={
+                        styles.tipobotao
+                      }
                       onPress={botoesTipos}
                     >
                       <Image
@@ -1174,10 +1160,9 @@ const App = () => {
                   <Text style={styles.filtroText1}>Weights</Text>
                   <View style={styles.nem}>
                     <TouchableOpacity
-                      style={[
-                        styles.tipobotao,
-                        { backgroundColor: FiltroCor("filtro22") },
-                      ]}
+                      style={
+                        styles.tipobotao
+                      }
                       onPress={botoesTipos}
                     >
                       <Image
@@ -1187,10 +1172,9 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={[
-                        styles.tipobotao,
-                        { backgroundColor: FiltroCor("filtro23") },
-                      ]}
+                      style={
+                        styles.tipobotao
+                      }
                       onPress={botoesTipos}
                     >
                       <Image
@@ -1200,10 +1184,9 @@ const App = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={[
-                        styles.tipobotao,
-                        { backgroundColor: FiltroCor("filtro24") },
-                      ]}
+                      style={
+                        styles.tipobotao
+                      }
                       onPress={botoesTipos}
                     >
                       <Image
