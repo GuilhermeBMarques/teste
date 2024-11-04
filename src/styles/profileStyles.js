@@ -1,57 +1,59 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-  profileCard: {
+  card: {
     width: "100%",
     height: "100%",
   },
-  backButtonContainer: {
+  btnVoltar: {
     display: "flex",
-    alignItems: "flex-start",
+    alignItems: "start",
     justifyContent: "center",
     marginVertical: 20,
     marginHorizontal: 20,
     position: "absolute",
     zIndex: 1,
   },
-  backButtonImage: {
+  exitImage: {
     width: 20,
     height: 20,
   },
-  mainContainer: {
+  containerPai: {
     display: "flex",
     flexDirection: "row",
     width: "100%",
+    height: 200,
+    top: 50,
   },
-  imageContainer: {
+  containerImg: {
     width: "50%",
     justifyContent: "center",
     alignItems: "center",
   },
-  textContainer: {
+  containerText: {
     width: "50%",
     justifyContent: "center",
-    alignItems: "flex-start",
+    alignItems: "start",
   },
-  pokemonImage: {
-    width: 200,
-    height: 200,
+  pokemonImagem: {
+    width: 150,
+    height: 150,
   },
-  pokemonIdText: {
+  pokemonId: {
     color: "#17171B99",
     fontSize: 18,
     fontWeight: "bold",
   },
-  pokemonNameText: {
+  pokemonNome: {
     color: "white",
     fontWeight: "bold",
     fontSize: 32,
   },
-  typeContainer: {
+  ContainerTipos: {
     flexDirection: "row",
     marginTop: 5,
   },
-  typeBadge: {
+  pokemonTipo: {
     backgroundColor: "rgba(255, 255, 255, 0.3)",
     width: 90,
     height: 25,
@@ -62,64 +64,44 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
-  typeIcon: {
+  pokemonTipoIcone: {
     width: 15,
     height: 15,
     marginRight: 5,
   },
-  typeText: {
+  pokemonTexto: {
     fontSize: 12,
     color: "#FFF",
     textTransform: "capitalize",
     fontWeight: "bold",
   },
-  buttonGroupContainer: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    width: "100%",
-    marginVertical: 20,
-  },
-  actionButton: {
-    flex: 1,
-    padding: 10,
-    borderRadius: 5,
-    marginHorizontal: 5,
-  },
-  actionButtonText: {
+  btnText: {
     color: "#FFFFFF",
     textAlign: "center",
     fontSize: 16,
   },
-  detailsContainer: {
-    width: "100%",
-    height: "100%",
-    backgroundColor: "#FFFFFF",
-    borderTopLeftRadius: 40,
-    borderTopRightRadius: 40,
-    padding: 50,
-  },
-  infoText: {
+  textInfo1: {
     marginVertical: 10,
     fontSize: 16,
     color: "#17171B",
   },
-  subtleText: {
+  textInfo2: {
     color: "#747476",
     fontSize: 16,
     marginVertical: 10,
   },
-  abilitiesRow: {
+  abilitiesContainer: {
     flexDirection: "row",
     flexWrap: "wrap",
   },
-  rowLayout: {
+  mesmaLinha: {
     flexDirection: "row",
   },
   smallText: {
     fontSize: 12,
     color: "#747476",
   },
-  evolutionSection: {
+  evolutionsContainer: {
     width: "100%",
     height: "100%",
   },
@@ -128,18 +110,68 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     justifyContent: "center",
   },
-  evolutionItemContainer: {
+  evolutionItem: {
     alignItems: "center",
   },
   evolutionImage: {
     width: 150,
     height: 150,
   },
-  evolutionNameText: {
+  evolutionText: {
     fontSize: 16,
     color: "#17171B",
     marginTop: -20,
   },
+  borrao: {
+    height: "100%",
+    padding: 35,
+    backgroundColor: "white",
+    borderRadius: 50,
+    top: 165,
+  },
+  btnContainer: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    width: "100%",
+    marginVertical: 20,
+    top: 180,
+  },
+  button: {
+    flex: 1,
+    padding: 10,
+    borderRadius: 5,
+    marginHorizontal: 5,
+  },
+  ww: {
+    width: "100%",
+    height: 50,
+  },
+  pokeboll: {
+    alignItems: "center",
+    marginHorizontal: 25,
+    width: 100,
+    height: 100,
+    position: "absolute",
+  },
+  foda: {
+  width: "100%",
+    top: 160,
+    marginLeft: "95%",
+    position: "absolute",
+  },
+  gg: {
+    width: 65,
+    height: 65,
+  },
+  nomegrande: {
+    width: "100%",
+    position: "absolute",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+nome: {
+   fontSize: 85,
+},
 });
 
 export default styles;

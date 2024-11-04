@@ -63,47 +63,67 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   borrao: {
-    width: "100%",
-    height: "100%",
-    backgroundColor: 'rgba(0, 0, 0, 0.2)',
-    position: "absolute",
-    zIndex: 1,
-    justifyContent: "center",
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', 
+    flex: 1,
+  
   },
   closebtn: {
     width: "100%",
-    height: "95%",
+    height: "50%",
   },
   containerFiltro: {
-    padding: 20,
     width: "100%",
     height: "100%",
-    borderRadius: 40,
+    padding: 30, 
+    borderTopLeftRadius: 40,
+    borderTopRightRadius: 40,
     backgroundColor: "#FFFFFF",
+  },
+  barra: {
+    width: "30%",
+    height: 10,
+    borderRadius: 40,
+    backgroundColor: "#FFFFFF", 
+    alignSelf: "center",
+    marginBottom: 20, 
+  },
+  filtroText1: {
+    color: "#17171B",
+    fontSize: 22, 
+    fontWeight: "bold",
+    marginBottom: 10,
+  },
+  filtroText2: {
+    color: "#747476",
+    fontSize: 16,
+    marginBottom: 20,
   },
   paitaon: {
     width: "100%",
-    height: "100%",
     flexDirection: "row",
     flexWrap: "wrap",
-    justifyContent: "space-around",
+    justifyContent: "space-between", 
+    marginTop: 20,
   },
   containerGenerations: {
     width: "45%",
-    height: 150,
+    height: 160, 
     backgroundColor: "#F2F2F2",
-    marginTop: 20,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
+    marginVertical: 10, 
     borderRadius: 10,
+    elevation: 2, 
+    justifyContent: "center",
+    alignItems: "center",
   },
   slaman: {
     flexDirection: "row",
+    justifyContent: "center",
+    marginBottom: 5, 
   },
   imgGenerations: {
     width: 50,
     height: 50,
+    marginHorizontal: 5, 
   },
   fds: {
     top: 20,
@@ -122,6 +142,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     padding: 20,
     borderRadius: 10,
+    elevation: 2, 
   },
   btnFilters: {
     width: "45%",
@@ -131,6 +152,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     marginTop: 20,
     padding: 20,
+    elevation: 2, 
     borderRadius: 10,
   },
   textSs: {
@@ -153,6 +175,13 @@ const styles = StyleSheet.create({
   },
   valueText: {
     color: "#747476",
+  },
+  tipobotao: {
+    width: 50,
+    height: 50,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 50,
   },
 });
 

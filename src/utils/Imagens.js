@@ -1,11 +1,16 @@
 // Importação dos Icons
 export const icons = {
   pokeball: require("../Img/pokeball.png"),
+  pokeboll: require("../Img/pokeboll.png"),
   filtro: require("../Img/filtro.png"),
   organizar: require("../Img/organizar.png"),
   geracao: require("../Img/geracao.png"),
   pesquisa: require("../Img/pesquisa.png"),
   exit: require("../Img/exit.png"),
+  sla: require("../Img/sla.png"),
+  pattern: require("../Img/pattern.png"),
+  gg: require("../Img/gg.png"),
+  circulo: require("../Img/circulo.png"),
 };
 
 // Importação dos Pokemons

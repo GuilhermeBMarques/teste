@@ -3,7 +3,6 @@ import {
   View,
   Text,
   FlatList,
-  StyleSheet,
   Image,
   TouchableOpacity,
   TextInput,
@@ -28,7 +27,6 @@ const App = () => {
     "https://pokeapi.co/api/v2/pokemon?limit=20"
   );
   const [selectedPokemon, setSelectedPokemon] = useState(null);
-  const [activeButton, setActiveButton] = useState();
   const [activeSortButton, setActiveSortButton] = useState(null);
   const [rangeValue, setRangeValue] = useState(50);
 
@@ -100,17 +98,20 @@ const App = () => {
 
   const openGenerationsModal = () => {
     setModalGenerationsOpen(true);
-    setModalSortOpen(false); // Fecha o outro modal
+    setModalFilterOpen(false);
+    setModalSortOpen(false);
   };
 
   const openSortModal = () => {
     setModalSortOpen(true);
-    setModalGenerationsOpen(false); // Fecha o outro modal
+    setModalFilterOpen(false);
+    setModalGenerationsOpen(false);
   };
 
   const openFilterModal = () => {
     setModalFilterOpen(true);
-    setModalGenerationsOpen(false); // Fecha o outro modal
+    setModalSortOpen(false);
+    setModalGenerationsOpen(false);
   };
 
   const closeGenerations = () => {
@@ -126,63 +127,63 @@ const App = () => {
   };
 
   const filteredList = displayedList.filter((pokemon) =>
-    pokemon.name.toLowerCase().includes(search.toLowerCase()),
+    pokemon.name.toLowerCase().includes(search.toLowerCase())
   );
 
   const generationsI = () => {
     const filteredGenerationsI = list.filter(
       (pokemon) => pokemon.id >= 1 && pokemon.id <= 151
     );
-    setDisplayedList(filteredGenerationsI); // Atualiza a lista exibida
+    setDisplayedList(filteredGenerationsI);
   };
 
   const generationsII = () => {
     const filteredGenerationsII = list.filter(
       (pokemon) => pokemon.id >= 152 && pokemon.id <= 251
     );
-    setDisplayedList(filteredGenerationsII); // Atualiza a lista exibida
+    setDisplayedList(filteredGenerationsII);
   };
 
   const generationsIII = () => {
     const filteredGenerationsIII = list.filter(
       (pokemon) => pokemon.id >= 252 && pokemon.id <= 386
     );
-    setDisplayedList(filteredGenerationsIII); // Atualiza a lista exibida
+    setDisplayedList(filteredGenerationsIII);
   };
 
   const generationsIV = () => {
     const filteredgenerationsIV = list.filter(
       (pokemon) => pokemon.id >= 387 && pokemon.id <= 494
     );
-    setDisplayedList(filteredgenerationsIV); // Atualiza a lista exibida
+    setDisplayedList(filteredgenerationsIV);
   };
 
   const generationsV = () => {
     const filteredGenerationsV = list.filter(
       (pokemon) => pokemon.id >= 495 && pokemon.id <= 649
     );
-    setDisplayedList(filteredGenerationsV); // Atualiza a lista exibida
+    setDisplayedList(filteredGenerationsV);
   };
 
   const generationsVI = () => {
     const filteredGenerationsVI = list.filter(
       (pokemon) => pokemon.id >= 650 && pokemon.id <= 721
     );
-    setDisplayedList(filteredGenerationsVI); // Atualiza a lista exibida
+    setDisplayedList(filteredGenerationsVI);
   };
 
   const generationsVII = () => {
     const filteredgenerationsVII = list.filter(
       (pokemon) => pokemon.id >= 722 && pokemon.id <= 809
     );
-    setDisplayedList(filteredgenerationsVII); // Atualiza a lista exibida
+    setDisplayedList(filteredgenerationsVII);
   };
 
   const generationsVIII = () => {
     const filteredgenerationsVIII = list.filter(
       (pokemon) => pokemon.id >= 810 && pokemon.id <= 816
     );
-    setDisplayedList(filteredgenerationsVIII); // Atualiza a lista exibida
+    setDisplayedList(filteredgenerationsVIII);
   };
 
   const renderItem = ({ item }) => (
@@ -215,6 +216,11 @@ const App = () => {
       b.name.localeCompare(a.name)
     );
     setDisplayedList(NameDesc);
+  };
+
+  const tipode = () => {
+    const agua = list.filter((pokemon) => pokemon.type === "water");
+    setDisplayedList(agua);
   };
 
   const TypesPokemons = () => {};
@@ -280,8 +286,9 @@ const App = () => {
                 style={styles.closebtn}
                 onPress={closeGenerations}
               ></TouchableOpacity>
-              <View style={styles.containerFiltro}>
-                <ScrollView>
+              <View style={styles.barra}></View>
+              <ScrollView>
+                <View style={styles.containerFiltro}>
                   <Text style={styles.filtroText1}>Generations</Text>
                   <Text style={styles.filtroText2}>
                     Use search for generations to explore your Pokémon!
@@ -296,7 +303,7 @@ const App = () => {
                         },
                       ]}
                       onPress={() => {
-                        generationsI(); // Corrigido para chamar a função
+                        generationsI();
                         handleSortButtonPress("geno");
                       }}
                     >
@@ -332,7 +339,7 @@ const App = () => {
                         },
                       ]}
                       onPress={() => {
-                        generationsII(); // Corrigido para chamar a função
+                        generationsII();
                         handleSortButtonPress("genoII");
                       }}
                     >
@@ -368,7 +375,7 @@ const App = () => {
                         },
                       ]}
                       onPress={() => {
-                        generationsIII(); // Corrigido para chamar a função
+                        generationsIII();
                         handleSortButtonPress("genoIII");
                       }}
                     >
@@ -404,7 +411,7 @@ const App = () => {
                         },
                       ]}
                       onPress={() => {
-                        generationsIV(); // Corrigido para chamar a função
+                        generationsIV();
                         handleSortButtonPress("genoIV");
                       }}
                     >
@@ -440,7 +447,7 @@ const App = () => {
                         },
                       ]}
                       onPress={() => {
-                        generationsV(); // Corrigido para chamar a função
+                        generationsV();
                         handleSortButtonPress("genoV");
                       }}
                     >
@@ -476,7 +483,7 @@ const App = () => {
                         },
                       ]}
                       onPress={() => {
-                        generationsVI(); // Corrigido para chamar a função
+                        generationsVI();
                         handleSortButtonPress("genoVI");
                       }}
                     >
@@ -512,7 +519,7 @@ const App = () => {
                         },
                       ]}
                       onPress={() => {
-                        generationsVII(); // Corrigido para chamar a função
+                        generationsVII();
                         handleSortButtonPress("genoVII");
                       }}
                     >
@@ -548,7 +555,7 @@ const App = () => {
                         },
                       ]}
                       onPress={() => {
-                        generationsVIII(); // Corrigido para chamar a função
+                        generationsVIII();
                         handleSortButtonPress("genoVIII");
                       }}
                     >
@@ -576,8 +583,8 @@ const App = () => {
                       </Text>
                     </TouchableOpacity>
                   </View>
-                </ScrollView>
-              </View>
+                </View>
+              </ScrollView>
             </View>
           </Modal>
 
@@ -592,101 +599,106 @@ const App = () => {
                 style={styles.closebtn}
                 onPress={closeSort}
               ></TouchableOpacity>
-              <View style={styles.containerFiltro}>
-                <Text style={styles.filtroText1}>Sort</Text>
-                <Text style={styles.filtroText2}>
-                  Sort Pokémons alphabetically or by National Pokédex number!
-                </Text>
-                <View style={styles.kkj}>
-                  <TouchableOpacity
-                    style={[
-                      styles.btnSort,
-                      activeSortButton === "asc" && {
-                        backgroundColor: "#EA5D60",
-                      },
-                    ]}
-                    onPress={() => {
-                      sortByNumberAsc();
-                      handleSortButtonPress("asc");
-                    }}
-                  >
-                    <Text
-                      style={[
-                        styles.btnText,
-                        activeSortButton === "asc" && { color: "#fff" },
-                      ]}
-                    >
-                      Smallest number first
-                    </Text>
-                  </TouchableOpacity>
 
-                  <TouchableOpacity
-                    style={[
-                      styles.btnSort,
-                      activeSortButton === "desc" && {
-                        backgroundColor: "#EA5D60",
-                      },
-                    ]}
-                    onPress={() => {
-                      sortByNumberDesc();
-                      handleSortButtonPress("desc");
-                    }}
-                  >
-                    <Text
-                      style={[
-                        styles.btnText,
-                        activeSortButton === "desc" && { color: "#fff" },
-                      ]}
-                    >
-                      Highest number first
-                    </Text>
-                  </TouchableOpacity>
+              <View style={styles.barra}></View>
+              <ScrollView>
+                <View style={styles.containerFiltro}>
+                  <Text style={styles.filtroText1}>Sort</Text>
+                  <Text style={styles.filtroText2}>
+                    Sort Pokémons alphabetically or by National Pokédex number!
+                  </Text>
 
-                  <TouchableOpacity
-                    style={[
-                      styles.btnSort,
-                      activeSortButton === "nameAsc" && {
-                        backgroundColor: "#EA5D60",
-                      },
-                    ]}
-                    onPress={() => {
-                      sortByNameAsc();
-                      handleSortButtonPress("nameAsc");
-                    }}
-                  >
-                    <Text
+                  <View style={styles.kkj}>
+                    <TouchableOpacity
                       style={[
-                        styles.btnText,
-                        activeSortButton === "nameAsc" && { color: "#fff" },
+                        styles.btnSort,
+                        activeSortButton === "asc" && {
+                          backgroundColor: "#EA5D60",
+                        },
                       ]}
+                      onPress={() => {
+                        sortByNumberAsc();
+                        handleSortButtonPress("asc");
+                      }}
                     >
-                      A-Z
-                    </Text>
-                  </TouchableOpacity>
+                      <Text
+                        style={[
+                          styles.btnText,
+                          activeSortButton === "asc" && { color: "#fff" },
+                        ]}
+                      >
+                        Smallest number first
+                      </Text>
+                    </TouchableOpacity>
 
-                  <TouchableOpacity
-                    style={[
-                      styles.btnSort,
-                      activeSortButton === "nameDesc" && {
-                        backgroundColor: "#EA5D60",
-                      },
-                    ]}
-                    onPress={() => {
-                      sortByNameDesc();
-                      handleSortButtonPress("nameDesc");
-                    }}
-                  >
-                    <Text
+                    <TouchableOpacity
                       style={[
-                        styles.btnText,
-                        activeSortButton === "nameDesc" && { color: "#fff" },
+                        styles.btnSort,
+                        activeSortButton === "desc" && {
+                          backgroundColor: "#EA5D60",
+                        },
                       ]}
+                      onPress={() => {
+                        sortByNumberDesc();
+                        handleSortButtonPress("desc");
+                      }}
                     >
-                      Z-A
-                    </Text>
-                  </TouchableOpacity>
+                      <Text
+                        style={[
+                          styles.btnText,
+                          activeSortButton === "desc" && { color: "#fff" },
+                        ]}
+                      >
+                        Highest number first
+                      </Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                      style={[
+                        styles.btnSort,
+                        activeSortButton === "nameAsc" && {
+                          backgroundColor: "#EA5D60",
+                        },
+                      ]}
+                      onPress={() => {
+                        sortByNameAsc();
+                        handleSortButtonPress("nameAsc");
+                      }}
+                    >
+                      <Text
+                        style={[
+                          styles.btnText,
+                          activeSortButton === "nameAsc" && { color: "#fff" },
+                        ]}
+                      >
+                        A-Z
+                      </Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                      style={[
+                        styles.btnSort,
+                        activeSortButton === "nameDesc" && {
+                          backgroundColor: "#EA5D60",
+                        },
+                      ]}
+                      onPress={() => {
+                        sortByNameDesc();
+                        handleSortButtonPress("nameDesc");
+                      }}
+                    >
+                      <Text
+                        style={[
+                          styles.btnText,
+                          activeSortButton === "nameDesc" && { color: "#fff" },
+                        ]}
+                      >
+                        Z-A
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
                 </View>
-              </View>
+              </ScrollView>
             </View>
           </Modal>
 
@@ -701,513 +713,1065 @@ const App = () => {
                 style={styles.closebtn}
                 onPress={closeFilter}
               ></TouchableOpacity>
-              <View style={styles.containerFiltro}>
-                <Text style={styles.filtroText1}>Filters</Text>
-                <Text style={styles.filtroText2}>
-                  Use advanced search to explore Pokémon by type, weakness,
-                  height and more!
-                </Text>
-                <View style={styles.fds}>
-                  <Text style={styles.filtroText1}>Types</Text>
-                  <View style={styles.nem}>
-                    <TouchableOpacity
+              <View style={styles.barra}></View>
+              <ScrollView>
+                <View style={styles.containerFiltro}>
+                  <Text style={styles.filtroText1}>Filters</Text>
+                  <Text style={styles.filtroText2}>
+                    Use advanced search to explore Pokémon by type, weakness,
+                    height and more!
+                  </Text>
+                  <View style={styles.fds}>
+                    <Text style={styles.filtroText1}>Types</Text>
+                    <View style={styles.nem}>
+                      <TouchableOpacity
+                        style={[
+                          styles.tipobotao,
+                          activeSortButton === "filter1" && {
+                            backgroundColor: "#8CB230",
+                          },
+                        ]}
+                        onPress={() => {
+                          TypesPokemons();
+                          handleSortButtonPress("filter1");
+                        }}
+                      >
+                        <Image
+                          source={ImagensIcon.filtros.filtro1}
+                          style={[
+                            styles.imgFoda,
+                            activeSortButton === "filter1" && {
+                              tintColor: "#FFFFFF",
+                            },
+                          ]}
+                        />
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        style={[
+                          styles.tipobotao,
+                          activeSortButton === "filter2" && {
+                            backgroundColor: "#58575F",
+                          },
+                        ]}
+                        onPress={() => {
+                          TypesPokemons();
+                          handleSortButtonPress("filter2");
+                        }}
+                      >
+                        <Image
+                          source={ImagensIcon.filtros.filtro2}
+                          style={[
+                            styles.imgFoda,
+                            activeSortButton === "filter2" && {
+                              tintColor: "#FFFFFF",
+                            },
+                          ]}
+                        />
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        style={[
+                          styles.tipobotao,
+                          activeSortButton === "filter3" && {
+                            backgroundColor: "#0F6AC0",
+                          },
+                        ]}
+                        onPress={() => {
+                          tipode();
+                          handleSortButtonPress("filter3");
+                        }}
+                      >
+                        <Image
+                          source={ImagensIcon.filtros.filtro3}
+                          style={[
+                            styles.imgFoda,
+                            activeSortButton === "filter3" && {
+                              tintColor: "#FFFFFF",
+                            },
+                          ]}
+                        />
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        style={[
+                          styles.tipobotao,
+                          activeSortButton === "filter4" && {
+                            backgroundColor: "#EED535",
+                          },
+                        ]}
+                        onPress={() => {
+                          TypesPokemons();
+                          handleSortButtonPress("filter4");
+                        }}
+                      >
+                        <Image
+                          source={ImagensIcon.filtros.filtro4}
+                          style={[
+                            styles.imgFoda,
+                            activeSortButton === "filter4" && {
+                              tintColor: "#FFFFFF",
+                            },
+                          ]}
+                        />
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        style={[
+                          styles.tipobotao,
+                          activeSortButton === "filter5" && {
+                            backgroundColor: "#ED6EC7",
+                          },
+                        ]}
+                        onPress={() => {
+                          TypesPokemons();
+                          handleSortButtonPress("filter5");
+                        }}
+                      >
+                        <Image
+                          source={ImagensIcon.filtros.filtro5}
+                          style={[
+                            styles.imgFoda,
+                            activeSortButton === "filter5" && {
+                              tintColor: "#FFFFFF",
+                            },
+                          ]}
+                        />
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        style={[
+                          styles.tipobotao,
+                          activeSortButton === "filter6" && {
+                            backgroundColor: "#D04164",
+                          },
+                        ]}
+                        onPress={() => {
+                          TypesPokemons();
+                          handleSortButtonPress("filter6");
+                        }}
+                      >
+                        <Image
+                          source={ImagensIcon.filtros.filtro6}
+                          style={[
+                            styles.imgFoda,
+                            activeSortButton === "filter6" && {
+                              tintColor: "#FFFFFF",
+                            },
+                          ]}
+                        />
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        style={[
+                          styles.tipobotao,
+                          activeSortButton === "filter7" && {
+                            backgroundColor: "#FD7D24",
+                          },
+                        ]}
+                        onPress={() => {
+                          TypesPokemons();
+                          handleSortButtonPress("filter7");
+                        }}
+                      >
+                        <Image
+                          source={ImagensIcon.filtros.filtro7}
+                          style={[
+                            styles.imgFoda,
+                            activeSortButton === "filter7" && {
+                              tintColor: "#FFFFFF",
+                            },
+                          ]}
+                        />
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        style={[
+                          styles.tipobotao,
+                          activeSortButton === "filter8" && {
+                            backgroundColor: "#748FC9",
+                          },
+                        ]}
+                        onPress={() => {
+                          TypesPokemons();
+                          handleSortButtonPress("filter8");
+                        }}
+                      >
+                        <Image
+                          source={ImagensIcon.filtros.filtro8}
+                          style={[
+                            styles.imgFoda,
+                            activeSortButton === "filter8" && {
+                              tintColor: "#FFFFFF",
+                            },
+                          ]}
+                        />
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        style={[
+                          styles.tipobotao,
+                          activeSortButton === "filter9" && {
+                            backgroundColor: "#556AAE",
+                          },
+                        ]}
+                        onPress={() => {
+                          TypesPokemons();
+                          handleSortButtonPress("filter9");
+                        }}
+                      >
+                        <Image
+                          source={ImagensIcon.filtros.filtro9}
+                          style={[
+                            styles.imgFoda,
+                            activeSortButton === "filter9" && {
+                              tintColor: "#FFFFFF",
+                            },
+                          ]}
+                        />
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        style={[
+                          styles.tipobotao,
+                          activeSortButton === "filter10" && {
+                            backgroundColor: "#62B957",
+                          },
+                        ]}
+                        onPress={() => {
+                          TypesPokemons();
+                          handleSortButtonPress("filter10");
+                        }}
+                      >
+                        <Image
+                          source={ImagensIcon.filtros.filtro10}
+                          style={[
+                            styles.imgFoda,
+                            activeSortButton === "filter10" && {
+                              tintColor: "#FFFFFF",
+                            },
+                          ]}
+                        />
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        style={[
+                          styles.tipobotao,
+                          activeSortButton === "filter11" && {
+                            backgroundColor: "#DD7748",
+                          },
+                        ]}
+                        onPress={() => {
+                          TypesPokemons();
+                          handleSortButtonPress("filter11");
+                        }}
+                      >
+                        <Image
+                          source={ImagensIcon.filtros.filtro11}
+                          style={[
+                            styles.imgFoda,
+                            activeSortButton === "filter11" && {
+                              tintColor: "#FFFFFF",
+                            },
+                          ]}
+                        />
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        style={[
+                          styles.tipobotao,
+                          activeSortButton === "filter12" && {
+                            backgroundColor: "#61CEC0",
+                          },
+                        ]}
+                        onPress={() => {
+                          TypesPokemons();
+                          handleSortButtonPress("filter12");
+                        }}
+                      >
+                        <Image
+                          source={ImagensIcon.filtros.filtro12}
+                          style={[
+                            styles.imgFoda,
+                            activeSortButton === "filter12" && {
+                              tintColor: "#FFFFFF",
+                            },
+                          ]}
+                        />
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        style={[
+                          styles.tipobotao,
+                          activeSortButton === "filter13" && {
+                            backgroundColor: "#9DA0AA",
+                          },
+                        ]}
+                        onPress={() => {
+                          TypesPokemons();
+                          handleSortButtonPress("filter13");
+                        }}
+                      >
+                        <Image
+                          source={ImagensIcon.filtros.filtro13}
+                          style={[
+                            styles.imgFoda,
+                            activeSortButton === "filter13" && {
+                              tintColor: "#FFFFFF",
+                            },
+                          ]}
+                        />
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        style={[
+                          styles.tipobotao,
+                          activeSortButton === "filter14" && {
+                            backgroundColor: "#A552CC",
+                          },
+                        ]}
+                        onPress={() => {
+                          TypesPokemons();
+                          handleSortButtonPress("filter14");
+                        }}
+                      >
+                        <Image
+                          source={ImagensIcon.filtros.filtro14}
+                          style={[
+                            styles.imgFoda,
+                            activeSortButton === "filter14" && {
+                              tintColor: "#FFFFFF",
+                            },
+                          ]}
+                        />
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        style={[
+                          styles.tipobotao,
+                          activeSortButton === "filter15" && {
+                            backgroundColor: "#EA5D60",
+                          },
+                        ]}
+                        onPress={() => {
+                          TypesPokemons();
+                          handleSortButtonPress("filter15");
+                        }}
+                      >
+                        <Image
+                          source={ImagensIcon.filtros.filtro15}
+                          style={[
+                            styles.imgFoda,
+                            activeSortButton === "filter15" && {
+                              tintColor: "#FFFFFF",
+                            },
+                          ]}
+                        />
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        style={[
+                          styles.tipobotao,
+                          activeSortButton === "filter16" && {
+                            backgroundColor: "#BAAB82",
+                          },
+                        ]}
+                        onPress={() => {
+                          TypesPokemons();
+                          handleSortButtonPress("filter16");
+                        }}
+                      >
+                        <Image
+                          source={ImagensIcon.filtros.filtro16}
+                          style={[
+                            styles.imgFoda,
+                            activeSortButton === "filter16" && {
+                              tintColor: "#FFFFFF",
+                            },
+                          ]}
+                        />
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        style={[
+                          styles.tipobotao,
+                          activeSortButton === "filter17" && {
+                            backgroundColor: "#417D9A",
+                          },
+                        ]}
+                        onPress={() => {
+                          TypesPokemons();
+                          handleSortButtonPress("filter17");
+                        }}
+                      >
+                        <Image
+                          source={ImagensIcon.filtros.filtro17}
+                          style={[
+                            styles.imgFoda,
+                            activeSortButton === "filter17" && {
+                              tintColor: "#FFFFFF",
+                            },
+                          ]}
+                        />
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        style={[
+                          styles.tipobotao,
+                          activeSortButton === "filter18" && {
+                            backgroundColor: "#4A90DA",
+                          },
+                        ]}
+                        onPress={() => {
+                          TypesPokemons();
+                          handleSortButtonPress("filter18");
+                        }}
+                      >
+                        <Image
+                          source={ImagensIcon.filtros.filtro18}
+                          style={[
+                            styles.imgFoda,
+                            activeSortButton === "filter18" && {
+                              tintColor: "#FFFFFF",
+                            },
+                          ]}
+                        />
+                      </TouchableOpacity>
+                    </View>
+
+                    <Text style={styles.filtroText1}>Weaknesses</Text>
+                    <View style={styles.nem}>
+                      <TouchableOpacity
+                        style={[
+                          styles.tipobotao,
+                          activeSortButton === "filter19" && {
+                            backgroundColor: "#8CB230",
+                          },
+                        ]}
+                        onPress={() => {
+                          TypesPokemons();
+                          handleSortButtonPress("filter19");
+                        }}
+                      >
+                        <Image
+                          source={ImagensIcon.filtros.filtro1}
+                          style={[
+                            styles.imgFoda,
+                            activeSortButton === "filter19" && {
+                              tintColor: "#FFFFFF",
+                            },
+                          ]}
+                        />
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        style={[
+                          styles.tipobotao,
+                          activeSortButton === "filter20" && {
+                            backgroundColor: "#58575F",
+                          },
+                        ]}
+                        onPress={() => {
+                          TypesPokemons();
+                          handleSortButtonPress("filter20");
+                        }}
+                      >
+                        <Image
+                          source={ImagensIcon.filtros.filtro2}
+                          style={[
+                            styles.imgFoda,
+                            activeSortButton === "filter20" && {
+                              tintColor: "#FFFFFF",
+                            },
+                          ]}
+                        />
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        style={[
+                          styles.tipobotao,
+                          activeSortButton === "filter21" && {
+                            backgroundColor: "#0F6AC0",
+                          },
+                        ]}
+                        onPress={() => {
+                          TypesPokemons();
+                          handleSortButtonPress("filter21");
+                        }}
+                      >
+                        <Image
+                          source={ImagensIcon.filtros.filtro3}
+                          style={[
+                            styles.imgFoda,
+                            activeSortButton === "filter21" && {
+                              tintColor: "#FFFFFF",
+                            },
+                          ]}
+                        />
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        style={[
+                          styles.tipobotao,
+                          activeSortButton === "filter22" && {
+                            backgroundColor: "#EED535",
+                          },
+                        ]}
+                        onPress={() => {
+                          TypesPokemons();
+                          handleSortButtonPress("filter22");
+                        }}
+                      >
+                        <Image
+                          source={ImagensIcon.filtros.filtro4}
+                          style={[
+                            styles.imgFoda,
+                            activeSortButton === "filter22" && {
+                              tintColor: "#FFFFFF",
+                            },
+                          ]}
+                        />
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        style={[
+                          styles.tipobotao,
+                          activeSortButton === "filter23" && {
+                            backgroundColor: "#ED6EC7",
+                          },
+                        ]}
+                        onPress={() => {
+                          TypesPokemons();
+                          handleSortButtonPress("filter23");
+                        }}
+                      >
+                        <Image
+                          source={ImagensIcon.filtros.filtro5}
+                          style={[
+                            styles.imgFoda,
+                            activeSortButton === "filter23" && {
+                              tintColor: "#FFFFFF",
+                            },
+                          ]}
+                        />
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        style={[
+                          styles.tipobotao,
+                          activeSortButton === "filter24" && {
+                            backgroundColor: "#D04164",
+                          },
+                        ]}
+                        onPress={() => {
+                          TypesPokemons();
+                          handleSortButtonPress("filter24");
+                        }}
+                      >
+                        <Image
+                          source={ImagensIcon.filtros.filtro6}
+                          style={[
+                            styles.imgFoda,
+                            activeSortButton === "filter24" && {
+                              tintColor: "#FFFFFF",
+                            },
+                          ]}
+                        />
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        style={[
+                          styles.tipobotao,
+                          activeSortButton === "filter25" && {
+                            backgroundColor: "#FD7D24",
+                          },
+                        ]}
+                        onPress={() => {
+                          TypesPokemons();
+                          handleSortButtonPress("filter25");
+                        }}
+                      >
+                        <Image
+                          source={ImagensIcon.filtros.filtro7}
+                          style={[
+                            styles.imgFoda,
+                            activeSortButton === "filter25" && {
+                              tintColor: "#FFFFFF",
+                            },
+                          ]}
+                        />
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        style={[
+                          styles.tipobotao,
+                          activeSortButton === "filter26" && {
+                            backgroundColor: "#748FC9",
+                          },
+                        ]}
+                        onPress={() => {
+                          TypesPokemons();
+                          handleSortButtonPress("filter26");
+                        }}
+                      >
+                        <Image
+                          source={ImagensIcon.filtros.filtro8}
+                          style={[
+                            styles.imgFoda,
+                            activeSortButton === "filter26" && {
+                              tintColor: "#FFFFFF",
+                            },
+                          ]}
+                        />
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        style={[
+                          styles.tipobotao,
+                          activeSortButton === "filter27" && {
+                            backgroundColor: "#556AAE",
+                          },
+                        ]}
+                        onPress={() => {
+                          TypesPokemons();
+                          handleSortButtonPress("filter27");
+                        }}
+                      >
+                        <Image
+                          source={ImagensIcon.filtros.filtro9}
+                          style={[
+                            styles.imgFoda,
+                            activeSortButton === "filter27" && {
+                              tintColor: "#FFFFFF",
+                            },
+                          ]}
+                        />
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        style={[
+                          styles.tipobotao,
+                          activeSortButton === "filter28" && {
+                            backgroundColor: "#62B957",
+                          },
+                        ]}
+                        onPress={() => {
+                          TypesPokemons();
+                          handleSortButtonPress("filter28");
+                        }}
+                      >
+                        <Image
+                          source={ImagensIcon.filtros.filtro10}
+                          style={[
+                            styles.imgFoda,
+                            activeSortButton === "filter28" && {
+                              tintColor: "#FFFFFF",
+                            },
+                          ]}
+                        />
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        style={[
+                          styles.tipobotao,
+                          activeSortButton === "filter29" && {
+                            backgroundColor: "#DD7748",
+                          },
+                        ]}
+                        onPress={() => {
+                          TypesPokemons();
+                          handleSortButtonPress("filter29");
+                        }}
+                      >
+                        <Image
+                          source={ImagensIcon.filtros.filtro11}
+                          style={[
+                            styles.imgFoda,
+                            activeSortButton === "filter29" && {
+                              tintColor: "#FFFFFF",
+                            },
+                          ]}
+                        />
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        style={[
+                          styles.tipobotao,
+                          activeSortButton === "filter30" && {
+                            backgroundColor: "#61CEC0",
+                          },
+                        ]}
+                        onPress={() => {
+                          TypesPokemons();
+                          handleSortButtonPress("filter30");
+                        }}
+                      >
+                        <Image
+                          source={ImagensIcon.filtros.filtro12}
+                          style={[
+                            styles.imgFoda,
+                            activeSortButton === "filter30" && {
+                              tintColor: "#FFFFFF",
+                            },
+                          ]}
+                        />
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        style={[
+                          styles.tipobotao,
+                          activeSortButton === "filter31" && {
+                            backgroundColor: "#9DA0AA",
+                          },
+                        ]}
+                        onPress={() => {
+                          TypesPokemons();
+                          handleSortButtonPress("filter31");
+                        }}
+                      >
+                        <Image
+                          source={ImagensIcon.filtros.filtro13}
+                          style={[
+                            styles.imgFoda,
+                            activeSortButton === "filter31" && {
+                              tintColor: "#FFFFFF",
+                            },
+                          ]}
+                        />
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        style={[
+                          styles.tipobotao,
+                          activeSortButton === "filter32" && {
+                            backgroundColor: "#A552CC",
+                          },
+                        ]}
+                        onPress={() => {
+                          TypesPokemons();
+                          handleSortButtonPress("filter32");
+                        }}
+                      >
+                        <Image
+                          source={ImagensIcon.filtros.filtro14}
+                          style={[
+                            styles.imgFoda,
+                            activeSortButton === "filter32" && {
+                              tintColor: "#FFFFFF",
+                            },
+                          ]}
+                        />
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        style={[
+                          styles.tipobotao,
+                          activeSortButton === "filter33" && {
+                            backgroundColor: "#EA5D60",
+                          },
+                        ]}
+                        onPress={() => {
+                          TypesPokemons();
+                          handleSortButtonPress("filter33");
+                        }}
+                      >
+                        <Image
+                          source={ImagensIcon.filtros.filtro15}
+                          style={[
+                            styles.imgFoda,
+                            activeSortButton === "filter33" && {
+                              tintColor: "#FFFFFF",
+                            },
+                          ]}
+                        />
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        style={[
+                          styles.tipobotao,
+                          activeSortButton === "filter34" && {
+                            backgroundColor: "#BAAB82",
+                          },
+                        ]}
+                        onPress={() => {
+                          TypesPokemons();
+                          handleSortButtonPress("filter34");
+                        }}
+                      >
+                        <Image
+                          source={ImagensIcon.filtros.filtro16}
+                          style={[
+                            styles.imgFoda,
+                            activeSortButton === "filter34" && {
+                              tintColor: "#FFFFFF",
+                            },
+                          ]}
+                        />
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        style={[
+                          styles.tipobotao,
+                          activeSortButton === "filter35" && {
+                            backgroundColor: "#417D9A",
+                          },
+                        ]}
+                        onPress={() => {
+                          TypesPokemons();
+                          handleSortButtonPress("filter35");
+                        }}
+                      >
+                        <Image
+                          source={ImagensIcon.filtros.filtro17}
+                          style={[
+                            styles.imgFoda,
+                            activeSortButton === "filter35" && {
+                              tintColor: "#FFFFFF",
+                            },
+                          ]}
+                        />
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        style={[
+                          styles.tipobotao,
+                          activeSortButton === "filter36" && {
+                            backgroundColor: "#4A90DA",
+                          },
+                        ]}
+                        onPress={() => {
+                          TypesPokemons();
+                          handleSortButtonPress("filter36");
+                        }}
+                      >
+                        <Image
+                          source={ImagensIcon.filtros.filtro18}
+                          style={[
+                            styles.imgFoda,
+                            activeSortButton === "filter36" && {
+                              tintColor: "#FFFFFF",
+                            },
+                          ]}
+                        />
+                      </TouchableOpacity>
+                    </View>
+
+                    <Text style={styles.filtroText1}>Heights</Text>
+                    <View style={styles.nem}>
+                      <TouchableOpacity
+                        style={[
+                          styles.tipobotao,
+                          activeSortButton === "filter37" && {
+                            backgroundColor: "#FFC5E6",
+                          },
+                        ]}
+                        onPress={() => {
+                          TypesPokemons();
+                          handleSortButtonPress("filter37");
+                        }}
+                      >
+                        <Image
+                          source={ImagensIcon.filtros.filtro19}
+                          style={[
+                            styles.imgFoda,
+                            activeSortButton === "filter37" && {
+                              tintColor: "#FFFFFF",
+                            },
+                          ]}
+                        />
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        style={[
+                          styles.tipobotao,
+                          activeSortButton === "filter38" && {
+                            backgroundColor: "#AEBFD7",
+                          },
+                        ]}
+                        onPress={() => {
+                          TypesPokemons();
+                          handleSortButtonPress("filter38");
+                        }}
+                      >
+                        <Image
+                          source={ImagensIcon.filtros.filtro20}
+                          style={[
+                            styles.imgFoda,
+                            activeSortButton === "filter38" && {
+                              tintColor: "#FFFFFF",
+                            },
+                          ]}
+                        />
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        style={[
+                          styles.tipobotao,
+                          activeSortButton === "filter39" && {
+                            backgroundColor: "#AAACB8",
+                          },
+                        ]}
+                        onPress={() => {
+                          TypesPokemons();
+                          handleSortButtonPress("filter39");
+                        }}
+                      >
+                        <Image
+                          source={ImagensIcon.filtros.filtro21}
+                          style={[
+                            styles.imgFoda,
+                            activeSortButton === "filter39" && {
+                              tintColor: "#FFFFFF",
+                            },
+                          ]}
+                        />
+                      </TouchableOpacity>
+                    </View>
+
+                    <Text style={styles.filtroText1}>Weights</Text>
+                    <View style={styles.nem}>
+                      <TouchableOpacity
+                        style={[
+                          styles.tipobotao,
+                          activeSortButton === "filter40" && {
+                            backgroundColor: "#99CD7C",
+                          },
+                        ]}
+                        onPress={() => {
+                          TypesPokemons();
+                          handleSortButtonPress("filter40");
+                        }}
+                      >
+                        <Image
+                          source={ImagensIcon.filtros.filtro22}
+                          style={[
+                            styles.imgFoda,
+                            activeSortButton === "filter40" && {
+                              tintColor: "#FFFFFF",
+                            },
+                          ]}
+                        />
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        style={[
+                          styles.tipobotao,
+                          activeSortButton === "filter41" && {
+                            backgroundColor: "#57B2DC",
+                          },
+                        ]}
+                        onPress={() => {
+                          TypesPokemons();
+                          handleSortButtonPress("filter41");
+                        }}
+                      >
+                        <Image
+                          source={ImagensIcon.filtros.filtro23}
+                          style={[
+                            styles.imgFoda,
+                            activeSortButton === "filter41" && {
+                              tintColor: "#FFFFFF",
+                            },
+                          ]}
+                        />
+                      </TouchableOpacity>
+
+                      <TouchableOpacity
+                        style={[
+                          styles.tipobotao,
+                          activeSortButton === "filter42" && {
+                            backgroundColor: "#5A92A5",
+                          },
+                        ]}
+                        onPress={() => {
+                          TypesPokemons();
+                          handleSortButtonPress("filter42");
+                        }}
+                      >
+                        <Image
+                          source={ImagensIcon.filtros.filtro24}
+                          style={[
+                            styles.imgFoda,
+                            activeSortButton === "filter42" && {
+                              tintColor: "#FFFFFF",
+                            },
+                          ]}
+                        />
+                      </TouchableOpacity>
+                    </View>
+
+                    <Text style={styles.filtroText1}>Number Range</Text>
+                    <Slider
+                      style={{ width: "100%", height: 40 }}
+                      minimumValue={0}
+                      maximumValue={1000}
+                      step={1}
+                      value={rangeValue}
+                      onValueChange={(value) => setRangeValue(value)}
+                      minimumTrackTintColor="#EA5D60"
+                      maximumTrackTintColor="#fff"
+                      thumbTintColor="#EA5D60"
+                    />
+                    <View
                       style={[
-                        styles.tipobotao,
-                        activeSortButton === "filter" && {
-                          backgroundColor: "#8CB230",
-                        },
+                        styles.valueContainer,
+                        { left: `${(rangeValue / 1000) * 95}%` },
                       ]}
-                      onPress={() => {
-                        TypesPokemons();
-                        handleSortButtonPress("filter");
-                      }}
                     >
-                      <Image
-                        source={ImagensIcon.filtros.filtro1}
-                        style={styles.imgFoda}
-                      />
-                    </TouchableOpacity>
+                      <Text style={styles.valueText}>{rangeValue}</Text>
+                    </View>
+                    <View style={styles.ResetApply}>
+                      <TouchableOpacity
+                        style={[
+                          styles.btnFilters,
+                          activeSortButton === "reseti" && {
+                            backgroundColor: "#EA5D60",
+                          },
+                        ]}
+                        onPress={() => {
+                          Reset();
+                          handleSortButtonPress("reseti");
+                        }}
+                      >
+                        <Text
+                          style={[
+                            styles.textSs,
+                            activeSortButton === "reseti" && {
+                              color: "white",
+                            },
+                          ]}
+                        >
+                          Reset
+                        </Text>
+                      </TouchableOpacity>
 
-                    <TouchableOpacity
-                      style={styles.tipobotao}
-                      onPress={TypesPokemons}
-                    >
-                      <Image
-                        source={ImagensIcon.filtros.filtro2}
-                        style={styles.imgFoda}
-                      />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      style={styles.tipobotao}
-                      onPress={TypesPokemons}
-                    >
-                      <Image
-                        source={ImagensIcon.filtros.filtro3}
-                        style={styles.imgFoda}
-                      />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      style={styles.tipobotao}
-                      onPress={TypesPokemons}
-                    >
-                      <Image
-                        source={ImagensIcon.filtros.filtro4}
-                        style={styles.imgFoda}
-                      />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      style={styles.tipobotao}
-                      onPress={TypesPokemons}
-                    >
-                      <Image
-                        source={ImagensIcon.filtros.filtro5}
-                        style={styles.imgFoda}
-                      />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      style={styles.tipobotao}
-                      onPress={TypesPokemons}
-                    >
-                      <Image
-                        source={ImagensIcon.filtros.filtro6}
-                        style={styles.imgFoda}
-                      />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      style={styles.tipobotao}
-                      onPress={TypesPokemons}
-                    >
-                      <Image
-                        source={ImagensIcon.filtros.filtro7}
-                        style={styles.imgFoda}
-                      />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      style={styles.tipobotao}
-                      onPress={TypesPokemons}
-                    >
-                      <Image
-                        source={ImagensIcon.filtros.filtro8}
-                        style={styles.imgFoda}
-                      />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      style={styles.tipobotao}
-                      onPress={TypesPokemons}
-                    >
-                      <Image
-                        source={ImagensIcon.filtros.filtro9}
-                        style={styles.imgFoda}
-                      />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      style={styles.tipobotao}
-                      onPress={TypesPokemons}
-                    >
-                      <Image
-                        source={ImagensIcon.filtros.filtro10}
-                        style={styles.imgFoda}
-                      />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      style={styles.tipobotao}
-                      onPress={TypesPokemons}
-                    >
-                      <Image
-                        source={ImagensIcon.filtros.filtro11}
-                        style={styles.imgFoda}
-                      />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      style={styles.tipobotao}
-                      onPress={TypesPokemons}
-                    >
-                      <Image
-                        source={ImagensIcon.filtros.filtro12}
-                        style={styles.imgFoda}
-                      />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      style={styles.tipobotao}
-                      onPress={TypesPokemons}
-                    >
-                      <Image
-                        source={ImagensIcon.filtros.filtro13}
-                        style={styles.imgFoda}
-                      />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      style={styles.tipobotao}
-                      onPress={TypesPokemons}
-                    >
-                      <Image
-                        source={ImagensIcon.filtros.filtro14}
-                        style={styles.imgFoda}
-                      />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      style={styles.tipobotao}
-                      onPress={TypesPokemons}
-                    >
-                      <Image
-                        source={ImagensIcon.filtros.filtro15}
-                        style={styles.imgFoda}
-                      />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      style={styles.tipobotao}
-                      onPress={TypesPokemons}
-                    >
-                      <Image
-                        source={ImagensIcon.filtros.filtro16}
-                        style={styles.imgFoda}
-                      />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      style={styles.tipobotao}
-                      onPress={TypesPokemons}
-                    >
-                      <Image
-                        source={ImagensIcon.filtros.filtro17}
-                        style={styles.imgFoda}
-                      />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      style={styles.tipobotao}
-                      onPress={TypesPokemons}
-                    >
-                      <Image
-                        source={ImagensIcon.filtros.filtro18}
-                        style={styles.imgFoda}
-                      />
-                    </TouchableOpacity>
-                  </View>
-
-                  <Text style={styles.filtroText1}>Weaknesses</Text>
-                  <View style={styles.nem}>
-                    <TouchableOpacity
-                      style={styles.tipobotao}
-                      onPress={botoesTipos}
-                    >
-                      <Image
-                        source={ImagensIcon.filtros.filtro1}
-                        style={styles.imgFoda}
-                      />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      style={styles.tipobotao}
-                      onPress={botoesTipos}
-                    >
-                      <Image
-                        source={ImagensIcon.filtros.filtro2}
-                        style={styles.imgFoda}
-                      />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      style={styles.tipobotao}
-                      onPress={botoesTipos}
-                    >
-                      <Image
-                        source={ImagensIcon.filtros.filtro3}
-                        style={styles.imgFoda}
-                      />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      style={styles.tipobotao}
-                      onPress={botoesTipos}
-                    >
-                      <Image
-                        source={ImagensIcon.filtros.filtro4}
-                        style={styles.imgFoda}
-                      />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      style={styles.tipobotao}
-                      onPress={botoesTipos}
-                    >
-                      <Image
-                        source={ImagensIcon.filtros.filtro5}
-                        style={styles.imgFoda}
-                      />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      style={styles.tipobotao}
-                      onPress={botoesTipos}
-                    >
-                      <Image
-                        source={ImagensIcon.filtros.filtro6}
-                        style={styles.imgFoda}
-                      />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      style={styles.tipobotao}
-                      onPress={botoesTipos}
-                    >
-                      <Image
-                        source={ImagensIcon.filtros.filtro7}
-                        style={styles.imgFoda}
-                      />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      style={styles.tipobotao}
-                      onPress={botoesTipos}
-                    >
-                      <Image
-                        source={ImagensIcon.filtros.filtro8}
-                        style={styles.imgFoda}
-                      />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      style={styles.tipobotao}
-                      onPress={botoesTipos}
-                    >
-                      <Image
-                        source={ImagensIcon.filtros.filtro9}
-                        style={styles.imgFoda}
-                      />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      style={styles.tipobotao}
-                      onPress={botoesTipos}
-                    >
-                      <Image
-                        source={ImagensIcon.filtros.filtro10}
-                        style={styles.imgFoda}
-                      />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      style={styles.tipobotao}
-                      onPress={botoesTipos}
-                    >
-                      <Image
-                        source={ImagensIcon.filtros.filtro11}
-                        style={styles.imgFoda}
-                      />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      style={styles.tipobotao}
-                      onPress={botoesTipos}
-                    >
-                      <Image
-                        source={ImagensIcon.filtros.filtro12}
-                        style={styles.imgFoda}
-                      />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      style={styles.tipobotao}
-                      onPress={botoesTipos}
-                    >
-                      <Image
-                        source={ImagensIcon.filtros.filtro13}
-                        style={styles.imgFoda}
-                      />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      style={styles.tipobotao}
-                      onPress={botoesTipos}
-                    >
-                      <Image
-                        source={ImagensIcon.filtros.filtro14}
-                        style={styles.imgFoda}
-                      />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      style={styles.tipobotao}
-                      onPress={botoesTipos}
-                    >
-                      <Image
-                        source={ImagensIcon.filtros.filtro15}
-                        style={styles.imgFoda}
-                      />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      style={styles.tipobotao}
-                      onPress={botoesTipos}
-                    >
-                      <Image
-                        source={ImagensIcon.filtros.filtro16}
-                        style={styles.imgFoda}
-                      />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      style={styles.tipobotao}
-                      onPress={botoesTipos}
-                    >
-                      <Image
-                        source={ImagensIcon.filtros.filtro17}
-                        style={styles.imgFoda}
-                      />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      style={styles.tipobotao}
-                      onPress={botoesTipos}
-                    >
-                      <Image
-                        source={ImagensIcon.filtros.filtro18}
-                        style={styles.imgFoda}
-                      />
-                    </TouchableOpacity>
-                  </View>
-
-                  <Text style={styles.filtroText1}>Heights</Text>
-                  <View style={styles.nem}>
-                    <TouchableOpacity
-                      style={styles.tipobotao}
-                      onPress={botoesTipos}
-                    >
-                      <Image
-                        source={ImagensIcon.filtros.filtro19}
-                        style={styles.imgFoda}
-                      />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      style={styles.tipobotao}
-                      onPress={botoesTipos}
-                    >
-                      <Image
-                        source={ImagensIcon.filtros.filtro20}
-                        style={styles.imgFoda}
-                      />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      style={styles.tipobotao}
-                      onPress={botoesTipos}
-                    >
-                      <Image
-                        source={ImagensIcon.filtros.filtro21}
-                        style={styles.imgFoda}
-                      />
-                    </TouchableOpacity>
-                  </View>
-
-                  <Text style={styles.filtroText1}>Weights</Text>
-                  <View style={styles.nem}>
-                    <TouchableOpacity
-                      style={styles.tipobotao}
-                      onPress={botoesTipos}
-                    >
-                      <Image
-                        source={ImagensIcon.filtros.filtro22}
-                        style={styles.imgFoda}
-                      />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      style={styles.tipobotao}
-                      onPress={botoesTipos}
-                    >
-                      <Image
-                        source={ImagensIcon.filtros.filtro23}
-                        style={styles.imgFoda}
-                      />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      style={styles.tipobotao}
-                      onPress={botoesTipos}
-                    >
-                      <Image
-                        source={ImagensIcon.filtros.filtro24}
-                        style={styles.imgFoda}
-                      />
-                    </TouchableOpacity>
-                  </View>
-
-                  <Text style={styles.filtroText1}>Number Range</Text>
-                  <Slider
-                    style={{ width: "100%", height: 40 }}
-                    minimumValue={0}
-                    maximumValue={1000}
-                    step={1}
-                    value={rangeValue}
-                    onValueChange={(value) => setRangeValue(value)}
-                    minimumTrackTintColor="#EA5D60"
-                    maximumTrackTintColor="#fff"
-                    thumbTintColor="#EA5D60"
-                  />
-                  <View
-                    style={[
-                      styles.valueContainer,
-                      { left: `${(rangeValue / 1000) * 95}%` },
-                    ]}
-                  >
-                    <Text style={styles.valueText}>{rangeValue}</Text>
-                  </View>
-                  <View style={styles.ResetApply}>
-                    <TouchableOpacity style={[
-                      styles.btnFilters,
-                      activeSortButton === "reseti"&& {
-                        backgroundColor: "#EA5D60",
-                        },
-                      ]} 
-                      onPress={() => {
-                        Reset()
-                        handleSortButtonPress("reseti");
-                      }
-
-                      }>
-                      <Text style={[styles.textSs,
-                     activeSortButton === "reseti"&& {
-                      color: "white",
-                      },
-                    ]} >Reset</Text>
-                    </TouchableOpacity>
-
-              
-                    <TouchableOpacity style={[
-                      styles.btnFilters,
-                      activeSortButton === "apli"&& {
-                        backgroundColor: "#EA5D60",
-                        },
-                      ]} 
-                      onPress={() => {
-                        Apply()
-                        handleSortButtonPress("apli");
-                      }}>
-                    <Text style={[styles.textSs,
-                     activeSortButton === "apli"&& {
-                      color: "white",
-                      },
-                    ]} >Apply</Text>
-                    </TouchableOpacity>
+                      <TouchableOpacity
+                        style={[
+                          styles.btnFilters,
+                          activeSortButton === "apli" && {
+                            backgroundColor: "#EA5D60",
+                          },
+                        ]}
+                        onPress={() => {
+                          Apply();
+                          handleSortButtonPress("apli");
+                        }}
+                      >
+                        <Text
+                          style={[
+                            styles.textSs,
+                            activeSortButton === "apli" && {
+                              color: "white",
+                            },
+                          ]}
+                        >
+                          Apply
+                        </Text>
+                      </TouchableOpacity>
+                    </View>
                   </View>
                 </View>
-              </View>
+              </ScrollView>
             </View>
           </Modal>
 
