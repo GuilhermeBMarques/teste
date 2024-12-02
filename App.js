@@ -219,7 +219,15 @@ const App = () => {
   };
 
   const tipode = () => {
-    const agua = list.filter((pokemon) => pokemon.type === "water");
+    console.log("Lista de Pokémon:", list); // Verifique a lista antes do filtro
+    const agua = list.filter((pokemon) => {
+      console.log("Verificando Pokémon:", pokemon); // Verifique cada Pokémon
+      return (
+        Array.isArray(pokemon.types) &&
+        pokemon.types.some((type) => type.type.name === "water")
+      );
+    });
+    console.log("Pokémon do tipo Água:", agua); // Veja o resultado do filtro
     setDisplayedList(agua);
   };
 
@@ -732,7 +740,7 @@ const App = () => {
                           },
                         ]}
                         onPress={() => {
-                          TypesPokemons();
+                          tipode();
                           handleSortButtonPress("filter1");
                         }}
                       >
@@ -778,7 +786,7 @@ const App = () => {
                           },
                         ]}
                         onPress={() => {
-                          tipode();
+                          TypesPokemons();
                           handleSortButtonPress("filter3");
                         }}
                       >

@@ -5,19 +5,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
   },
-  btnVoltar: {
-    display: "flex",
-    alignItems: "start",
-    justifyContent: "center",
-    marginVertical: 20,
-    marginHorizontal: 20,
-    position: "absolute",
-    zIndex: 1,
-  },
-  exitImage: {
-    width: 20,
-    height: 20,
-  },
+  // Parte da cabeça
   containerPai: {
     display: "flex",
     flexDirection: "row",
@@ -30,14 +18,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  pokemonImagem: {
+    width: 150,
+    height: 150,
+  },
   containerText: {
     width: "50%",
     justifyContent: "center",
     alignItems: "start",
-  },
-  pokemonImagem: {
-    width: 150,
-    height: 150,
   },
   pokemonId: {
     color: "#17171B99",
@@ -54,7 +42,6 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   pokemonTipo: {
-    backgroundColor: "rgba(255, 255, 255, 0.3)",
     width: 90,
     height: 25,
     borderRadius: 5,
@@ -63,6 +50,7 @@ const styles = StyleSheet.create({
     marginRight: 5,
     flexDirection: "row",
     alignItems: "center",
+    elevation: 2, 
   },
   pokemonTipoIcone: {
     width: 15,
@@ -75,10 +63,74 @@ const styles = StyleSheet.create({
     textTransform: "capitalize",
     fontWeight: "bold",
   },
+
+  // Modal
+  ww: {
+    width: "100%",
+    height: 50,
+  },
+  btnVoltar: {
+    display: "flex",
+    alignItems: "start",
+    justifyContent: "center",
+    marginVertical: 20,
+    marginHorizontal: 20,
+    position: "absolute",
+    zIndex: 1,
+  },
+  exitImage: {
+    width: 20,
+    height: 20,
+  },
+  pokemonTipoooo: {
+    width: 25,
+    height: 25,
+    borderRadius: 5,
+    paddingHorizontal: 5,
+    paddingVertical: 5,
+    elevation: 2, 
+  },
+
+  weaknessesContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 8,
+    marginLeft: 10, 
+  },
+
+  btnContainer: {
+    flexDirection: "row",
+    justifyContent: "center",  
+    alignItems: "center", 
+    width: "100%",
+    marginVertical: 20,
+    top: 180,
+  },
   btnText: {
     color: "#FFFFFF",
     textAlign: "center",
     fontSize: 16,
+  },
+  pokeboll: {
+    textAlign: "center",
+    width: 100,
+    height: 100,
+    position: "absolute",
+    marginLeft: 20,
+  },
+  pokebollInvi: {
+    textAlign: "center",
+    width: 100,
+    height: 100,
+    opacity: 0,
+    position: "absolute",
+    marginLeft: 20,
+  },
+
+
+  textVerde: {
+    marginVertical: 10,
+    fontSize: 18,
   },
   textInfo1: {
     marginVertical: 10,
@@ -122,37 +174,22 @@ const styles = StyleSheet.create({
     color: "#17171B",
     marginTop: -20,
   },
-  borrao: {
+  descricaoPokemon: {
     height: "100%",
     padding: 35,
     backgroundColor: "white",
     borderRadius: 50,
     top: 165,
   },
-  btnContainer: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    width: "100%",
-    marginVertical: 20,
-    top: 180,
-  },
+
   button: {
     flex: 1,
     padding: 10,
     borderRadius: 5,
     marginHorizontal: 5,
   },
-  ww: {
-    width: "100%",
-    height: 50,
-  },
-  pokeboll: {
-    alignItems: "center",
-    marginHorizontal: 25,
-    width: 100,
-    height: 100,
-    position: "absolute",
-  },
+
+
   foda: {
   width: "100%",
     top: 160,
@@ -172,6 +209,26 @@ const styles = StyleSheet.create({
 nome: {
    fontSize: 85,
 },
+
+statBarContainer: {
+  flexDirection: "row",
+  alignItems: "center",
+  marginVertical: 5,
+},
+statBar: {
+  height: 8,
+  flex: 1,
+  backgroundColor: "#F2F2F2",  
+  borderRadius: 4,
+  overflow: "hidden",
+  maxWidth: "40%",
+  elevation: 2, 
+},
+statBarFill: {
+  height: "100%",
+  borderRadius: 4,
+},
+
 });
 
 export default styles;
